@@ -12,8 +12,46 @@
 // queries are: a / c = ?, b / a = ?, a / e = ?, a / a = ?, x / x = ?
 // return: [6.0, 0.5, -1.0, 1.0, -1.0 ]
 
+// solution by dfs and graph
+
+var calcEquation = function (equations, values, queries) {
+  const graph = buildGraph(equations, values);
+  for (let i = 0; i < queries.length; i++) {
+    const [start, end] = queries[i];
+    if (!graph[start] || !graph[end]) {
+      queries[i] = -1;
+    } else if (start == end) queries[i] = 1;
+    else queries[i] = dfs(graph, ...queries[i], {});
+  }
+  return queries;
+};
+
+function dfs(graph, start, end, visited) {
+  visited[start] = true;
+  for (let curr of graph[start]) {
+    if (curr[0] in visited) continue;
+    if (curr[0] == end) return curr[1];
+    const res = dfs(graph, curr[0], end, visited);
+    if (res !== -1) return res * curr[1];
+  }
+
+  return -1;
+}
+
+function buildGraph(equations, values) {
+  const graph = {};
+  for (let i = 0; i < equations.length; i++) {
+    const [x, y] = equations[i];
+    graph[x] = graph[x] || [];
+    graph[x].push([y, values[i]]);
+    graph[y] = graph[y] || [];
+    graph[y].push([x, 1 / values[i]]);
+  }
+  return graph;
+}
 // solution by union find
-const calcEquation = function (equations, values, queries) {
+
+const calcEquation2 = function (equations, values, queries) {
   const chars = {};
   const dist = {};
   for (let i = 0; i < equations.length; i++) {
