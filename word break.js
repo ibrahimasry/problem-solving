@@ -19,6 +19,7 @@
 // Output: false
 
 const wordBreak = function (s, wordDict) {
+  if (s.length == 0) return true;
   const set = new Set(wordDict);
 
   return helper(s, set, 0, {});
