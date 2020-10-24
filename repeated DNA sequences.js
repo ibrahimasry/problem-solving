@@ -16,24 +16,25 @@
  * @param {string} s
  * @return {string[]}
  */
-var findRepeatedDnaSequences = function (s) {
+const findRepeatedDnaSequences = function (s) {
   const map = { A: 0, C: 1, G: 2, T: 3 };
   let base = 4 ** 9;
   let currWindow = 0;
-  const hash = new Set();
+  const hash = {};
   for (let i = 0; i < 10; i++) {
     currWindow = currWindow * 4 + map[s[i]];
   }
 
-  const set = new Set();
-  hash.add(currWindow);
+  const res = [];
+  hash[currWindow] = 1;
   for (let i = 10; i < s.length; i++) {
     currWindow -= base * map[s[i - 10]];
     currWindow = currWindow * 4 + map[s[i]];
-    if (hash.has(currWindow)) {
-      set.add(s.slice(i - 9, i + 1));
-    } else hash.add(currWindow);
+    if (hash[currWindow] === 1) {
+      res.push(s.slice(i - 9, i + 1));
+      hash[currWindow]++;
+    } else if (hash[currWindow] === undefined) hash[currWindow] = 1;
   }
 
-  return [...set];
+  return res;
 };
