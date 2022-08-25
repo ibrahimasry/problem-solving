@@ -1,9 +1,9 @@
 class Solution:
     def waysToPartition(self, nums: List[int], k: int) -> int:
         
-        prefix = list(accumulate(nums))
-        right = Counter()
-        left = Counter()
+        prefix = list(itertools.accumulate(nums))
+        right = collections.Counter()
+        left = collections.Counter()
         
         
         
