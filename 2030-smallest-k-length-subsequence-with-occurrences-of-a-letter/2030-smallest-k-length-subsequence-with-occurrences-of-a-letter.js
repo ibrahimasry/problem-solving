@@ -18,10 +18,10 @@ var smallestSubsequence = function(s, k, letter, repetition) {
     for(let i =0; i< s.length; i++){
         let currLetter = s[i]
         while(stack.length > 0 && s.length - i + stack.length - 1 >= k   && 
-               ((currLetter < last(stack) && (last(stack) != letter) ||
-               (countInStack + countInStr - 1  >= repetition  && currLetter < last(stack))) 
-              || (k - stack.length < repetition - countInStack))){
-            
+               ((currLetter < last(stack) && (last(stack) != letter || countInStack + countInStr - 1  >= repetition))
+                     || k - stack.length < repetition - countInStack))
+               
+      {
             
             countInStack -= last(stack) == letter ? 1 : 0 
             stack.pop()
