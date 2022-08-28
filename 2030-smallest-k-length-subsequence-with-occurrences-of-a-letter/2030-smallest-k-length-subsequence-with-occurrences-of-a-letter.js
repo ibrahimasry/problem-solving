@@ -8,10 +8,6 @@
 var smallestSubsequence = function(s, k, letter, repetition) {
     
     const last = (arr) => arr[arr.length -1]
-    //curr count in stack for the target letter
-    //curr count in remaining str for the target curr
-    
-    // curr remianin length
     let countInStr = s.split("").reduce((a, b) => a + (b ==letter ? 1 : 0), 0)
     let countInStack = 0
     let stack = []
