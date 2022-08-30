@@ -4,13 +4,17 @@
  * @return {string}
  */
 var longestSubsequenceRepeatedK = function(s, k) {
-    function isSubsequence(s, sub){
-        let i = 0
+    function isSubsequence(s, sub , k){
+            let i = 0
             for(let j = 0; j < s.length; j++){
                 if(s[j] == sub[i])
                     i++
-                if(i === sub.length)
+                if(i === sub.length && k == 1)
                     return true
+                if(i === sub.length){
+                    i=0
+                    k--
+                }
                     
         }
         return false
@@ -35,7 +39,7 @@ var longestSubsequenceRepeatedK = function(s, k) {
         for(let [sub, cnt] of cand){
             for(let curr of sortedLetter){
                 if(cnt[curr] === undefined ||  allowed[curr] > cnt[curr]){
-                    if(isSubsequence(s, (sub + curr).repeat(k))){
+                    if(isSubsequence(s, (sub + curr), k)){
                         newCand.push([sub+curr, {...cnt, [curr] : cnt[curr] ? cnt[curr] + 1 : 1}])
                     }
                     
