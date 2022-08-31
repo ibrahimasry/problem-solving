@@ -3,12 +3,12 @@
  * @return {number}
  */
 var minOperations = function(nums) {
-    
-  const set = [...new Set(nums)].sort((a, b) => a - b)
-    let min = nums.length
+    const n = nums.length
+    const set = [...new Set(nums)].sort((a, b) => a - b)
+    let min = n
     for(let i = 0; i < set.length; i++){
-        let end  = bs(set, i ,set[i] + nums.length-1) 
-        let curr = nums.length  - (end - i  + 1)
+        let end  = bs(set, i , set[i] + n -1) 
+        let curr = n  - (end - i  + 1)
         min = Math.min(curr, min) 
         
         
