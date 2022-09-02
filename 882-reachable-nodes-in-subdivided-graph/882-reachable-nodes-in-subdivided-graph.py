@@ -7,7 +7,7 @@ class Solution:
             graph[v].append((u, w + 1))
             graph[u].append((v, w + 1))
             
-        dist =  [sys.maxsize] * n
+        dist =  [float('inf')] * n
         
         dist[0] = 0
         pq =[(0,0)]
