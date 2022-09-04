@@ -10,7 +10,7 @@ var smallestMissingValueSubtree = function(parents, nums) {
     let currNode = nums.indexOf(1)
     let res = Array(nums.length).fill(1)
     let currSmall = 1
-    let visited = Array(Math.max(...nums) * 2).fill(false) 
+    let visited = Array(Math.max(...nums) +1).fill(false) 
     while(currNode !== -1){
         dfs(currNode, visited, tree, nums)
         while(visited[currSmall])
@@ -35,7 +35,7 @@ function buildTree(parents){
 
 
 function dfs(node, visited, tree, nums){
-        if(visited[nums[node]])return
+     if(visited[nums[node]]) return
         visited[nums[node]] = true
     for(let child of tree[node] || [])
         {
