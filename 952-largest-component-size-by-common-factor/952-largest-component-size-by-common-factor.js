@@ -9,7 +9,8 @@ class UnionFind {
           a[b] = b
           return a
     }, {})
-        this.sizes = Array(max).fill(1)
+        this.sizes = {}
+        this.max = arr.length > 0 ? 1 : 0
     }
      find = (x) => {
         if(this.parent[x] !== x) 
@@ -22,7 +23,9 @@ class UnionFind {
         let pb = this.find(b)
         if(pa !== pb){
             this.parent[pb] = pa
-            this.sizes[pa] += this.sizes[pb]
+            this.sizes[pa] = this.sizes[pa] || 1
+            this.sizes[pa] += (this.sizes[pb] || 1)
+            this.max = Math.max(this.max, this.sizes[pa])
         }
    }
      
@@ -55,5 +58,5 @@ var largestComponentSize = function(nums) {
     const unionFind = new UnionFind(nums , max)
     const {union, find} = unionFind
     seive(union, max, numsSet)
-    return Math.max(...unionFind.sizes) 
+    return unionFind.max
 };
