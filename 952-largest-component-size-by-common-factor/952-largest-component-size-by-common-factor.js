@@ -34,7 +34,7 @@ function seive(union, max, numsSet){
     const primes = Array(max + 1).fill(true)
     while (p < max){
         let prev = 0
-        if(primes[p] ) {
+        if(primes[p]) {
         for(let i = p ; i < max; i+= p){
             if(numsSet.has(i)){
                if(prev > 0)
@@ -51,9 +51,8 @@ function seive(union, max, numsSet){
 var largestComponentSize = function(nums) {
     
     const  numsSet = new Set(nums)
-    const  numsSorted = [...nums].sort((a, b) => a - b)
-    let    max = numsSorted[numsSorted.length - 1] + 1
-    const unionFind = new UnionFind(numsSorted)
+    let    max = Math.max(...nums) + 1
+    const unionFind = new UnionFind(nums)
     const {union, find} = unionFind
     seive(union, max, numsSet)
     return Math.max(...unionFind.sizes) 
