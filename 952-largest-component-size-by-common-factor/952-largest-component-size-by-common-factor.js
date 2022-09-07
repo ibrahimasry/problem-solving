@@ -4,12 +4,12 @@
  */
 
 class UnionFind {
-    constructor(arr){
+    constructor(arr, max){
         this.parent = arr.reduce((a, b) => {
           a[b] = b
           return a
     }, {})
-        this.sizes = Array(Math.max(...arr) + 1).fill(1)
+        this.sizes = Array(max).fill(1)
     }
      find = (x) => {
         if(this.parent[x] !== x) 
@@ -52,7 +52,7 @@ var largestComponentSize = function(nums) {
     
     const  numsSet = new Set(nums)
     let    max = Math.max(...nums) + 1
-    const unionFind = new UnionFind(nums)
+    const unionFind = new UnionFind(nums , max)
     const {union, find} = unionFind
     seive(union, max, numsSet)
     return Math.max(...unionFind.sizes) 
