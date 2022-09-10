@@ -7,9 +7,10 @@ class Solution:
         def dfs(sums):
             if 0 not in sums :
                 return []
+            if len(sums) == 2 and sum(sums) == 0 :
+                return [0]
             if len(sums) == 2 :
-                sums.remove(0)
-                return [sums[0]]
+                return filter(lambda x : x != 0, sums)
             x = sums[-1] - sums[-2]
             sums1 = []
             counts = Counter(sums)
