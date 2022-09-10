@@ -13,6 +13,6 @@ var distinctSubseqII = function(s) {
         
     }
     
-    return (Object.values(dp).reduce((a, b)=> a  + b , 0) + mod ) % mod
+    return (Object.values(dp).reduce((a, b)=> a  + b , 0) ) % mod
     
 };
