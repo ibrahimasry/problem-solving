@@ -31,7 +31,7 @@ var numberOfGoodSubsets = function(nums) {
       ones *= 2n;
       ones %= BigInt(mod);
     }
-    const ans = ( BigInt((dfs(nums, primes, count ,  0 , 0 , {}) % mod - 1) )) * ones
+    const ans = (BigInt((dfs(nums, primes, count ,  0 , 0 , {}) - 1))) * ones
     return ans % BigInt(mod)
       
 };
