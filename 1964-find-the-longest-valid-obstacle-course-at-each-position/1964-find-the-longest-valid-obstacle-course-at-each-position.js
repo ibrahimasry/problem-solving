@@ -9,7 +9,7 @@ var longestObstacleCourseAtEachPosition = function(obstacles) {
     
     
     for (let c of obstacles){
-        let index = binary(dp, c)
+        let index = bisectRight(dp, c)
         if(index >= dp.length)
             dp.push(c)
         else dp[index] = c
@@ -20,7 +20,7 @@ var longestObstacleCourseAtEachPosition = function(obstacles) {
 };
 
 
-function binary(arr, target){
+function bisectRight(arr, target){
     let l =0
     let h = arr.length - 1
     while(l < h){
