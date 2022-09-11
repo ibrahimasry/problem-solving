@@ -1,7 +1,7 @@
 class Solution:
     def numberOfCombinations(self, num: str) -> int:
         n = len(num)
-        prefix = [[0] * (n+1) for _ in range(n+1)]
+        prefix = [[0] * (n+1) for _ in range(n)]
         lcs = [[0] * (n + 1) for _ in range(n)]
         
         
