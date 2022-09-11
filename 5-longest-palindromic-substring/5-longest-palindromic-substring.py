@@ -12,7 +12,7 @@ class Solution:
                 dp[i] = min(dp[mirror], r - i)
             while  m[i +  dp[i]  + 1] == m[i - dp[i] - 1]:
                 dp[i] += 1
-            if dp[i] * 2 > (end - start)  + 1 or end + start == -2:
+            if dp[i] * 2 > (end - start)  + 1 :
                 start = i - dp[i] 
                 end = i + dp[i] 
                 
