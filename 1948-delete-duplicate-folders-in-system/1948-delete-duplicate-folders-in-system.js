@@ -18,10 +18,7 @@ var deleteDuplicateFolder = function(paths) {
     const res = []
     deleteDup(tri, res , "")
     
-   return  res.map(arr=> {
-        arr.shift()
-        return arr  
-     })
+   return  res
     
 };
 
@@ -36,7 +33,7 @@ function deleteDup(tri, res , curr){
     }
     
     if(curr?.length)
-        res.push(curr.split(","))
+        res.push(curr.split(",").slice(1))
     
 }
 
