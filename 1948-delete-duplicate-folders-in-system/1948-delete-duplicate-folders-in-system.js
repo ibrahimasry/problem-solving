@@ -25,8 +25,6 @@ var deleteDuplicateFolder = function(paths) {
 function deleteDup(tri, res , curr){
     if(!tri) return
     for(let child  of Object.keys(tri)){
-        if(!tri[child])
-            continue
         if(!(tri[child].isDelete))
             deleteDup(tri[child], res, curr + "," + child)
         
