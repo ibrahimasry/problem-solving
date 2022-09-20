@@ -6,18 +6,30 @@
 var maxGeneticDifference = function(parents, queries) {
     
     
-     const tri = {count : 0, children : {}}
-     const tree = {}
+     const [root, tree] = buildTree(parents)
      const ans = []
-     const queriesPerNode = {}
-     
-     for(let i = 0; i < queries.length; i++){
-         const [node, val] = queries[i]
-         if(queriesPerNode[node] === undefined)
-             queriesPerNode[node] = []
-         queriesPerNode[node].push([i, val])
-         
-     }
+     const queriesPerNode = buildQueries(queries)
+     const [update, query] = triBuilder()
+    
+    function dfs(node){
+         update(node, 1)
+        for(let [idx, val] of queriesPerNode[node] || [])
+            ans[idx] = query(val)
+        
+        for(let child of tree[+node] || [])
+            dfs(child)
+        update(node, -1)
+    }
+    
+    dfs(root)
+    return ans
+    
+};
+
+
+function triBuilder(){
+   const tri = {count : 0, children : {}}
+
      function update(num, val){
          let curr = tri
          
@@ -49,18 +61,14 @@ var maxGeneticDifference = function(parents, queries) {
        return ans
      }
     
+    return [update, query]
     
-    function dfs(node){
-         update(node, 1)
-        for(let [idx, val] of queriesPerNode[node] || [])
-            ans[idx] = query(val)
-        
-        for(let child of tree[+node] || [])
-            dfs(child)
-        update(node, -1)
-    }
-    
+
+}
+
+function buildTree(parents){
     let root = null
+    const tree = {}
     for(let [node, parent] of Object.entries(parents)){
         if(parent === -1)
             root = node
@@ -68,7 +76,20 @@ var maxGeneticDifference = function(parents, queries) {
             tree[parent] = []
         tree[parent].push(node)
     }
-    dfs(root)
-    return ans
+    return [root, tree]
+
+}
+
+function buildQueries(queries){
+    const queriesPerNode = {}
+     for(let i = 0; i < queries.length; i++){
+         const [node, val] = queries[i]
+         if(queriesPerNode[node] === undefined)
+             queriesPerNode[node] = []
+         queriesPerNode[node].push([i, val])
+         
+     }
     
-};
+    return queriesPerNode
+
+}
