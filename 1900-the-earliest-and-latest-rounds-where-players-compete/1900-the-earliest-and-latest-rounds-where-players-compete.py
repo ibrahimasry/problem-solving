@@ -17,6 +17,6 @@ class Solution:
             for elem in product(*pairs):
                 dfs(sorted(elem + addon), i + 1)
 
-        dfs(list(range(1, n+1)), 1)
+        dfs(tuple(range(1, n+1)), 1)
         return [min(ans), max(ans)]
         
