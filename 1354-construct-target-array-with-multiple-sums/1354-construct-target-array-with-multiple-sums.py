@@ -15,7 +15,8 @@ class Solution:
             if sub == 1 :
                 return True
             remain = val % sub
-            if remain < 1 or remain == val:
+            sub = val - remain
+            if remain == 0 or  val == remain:
                 return False
             heapq.heappush(currHeap, -remain)
             total += remain - val
