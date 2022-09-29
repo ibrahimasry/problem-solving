@@ -15,7 +15,7 @@ class Solution:
         for  node in range(n): 
             if node not in indgrees :
                 queue.append(node)
-                dp[node][(ord(colors[node]) - ord("a"))] = 1
+                dp[node][colorsVal[node]] = 1
         visited = 0
         while len(queue) > 0:
             curr = queue.pop()
