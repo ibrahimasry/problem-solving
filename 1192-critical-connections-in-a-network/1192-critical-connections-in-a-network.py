@@ -16,12 +16,9 @@ class Solution:
             for next in graph[node]:
                 if next == parent:
                     continue
-                if lows[next] == -1 :
-                    lows[node] = min(lows[node], dfs(next, node, label+1))
-                    if ids[node] < lows[next]:
-                        ans.append([node, next])
-                else:
-                    lows[node] = min(lows[node], lows[next])
+                lows[node] = min(lows[node], dfs(next, node, label+1))
+                if ids[node] < lows[next]:
+                    ans.append([node, next])
             return lows[node]        
         dfs(0, -1, 0)
         return ans
