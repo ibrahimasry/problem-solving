@@ -16,7 +16,7 @@ class Solution:
             if currRooms:
                 index = currRooms.bisect_left(id)
 
-                cand1 = cand2 = sys.maxsize
+                cand1 ,  cand2 = sys.maxsize, 0
 
                 if index < len(currRooms):
                     cand2 = currRooms[index]
