@@ -1,5 +1,7 @@
 class Solution:
     def maxBuilding(self, n: int, rest: List[List[int]]) -> int:
+        if not rest :
+            return n - 1
         rest.append([1,0])
         
         rest.sort()
