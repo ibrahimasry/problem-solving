@@ -6,10 +6,10 @@ class Solution:
         count2 = [0] * 32
         
         for n in arr1:
-            for i in range(31,-1,-1):
+            for i in range(32):
                 count1[i] += 1 if (n & (1 << i )) else 0 
         for n in arr2:
-            for i in range(31,-1,-1):
+            for i in range(32):
                 count2[i] += 1 if (n & (1 << i )) else 0
         ans = 0
         for i in range(0, 32):
