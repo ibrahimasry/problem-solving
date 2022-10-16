@@ -11,7 +11,7 @@ class Solution:
             for j in range(i + 1, len(word)):
                 if word[i] == word[j]:
                     if   j - i < 2 :
-                        dp[i][j] =  j - i + 1
+                        dp[i][j] =  2
                     else:
                         dp[i][j] = 2 + dp[i + 1][j - 1]
                     if i < n1 and j >= n1:
