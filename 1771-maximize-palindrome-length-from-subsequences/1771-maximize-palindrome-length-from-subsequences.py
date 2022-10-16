@@ -6,13 +6,12 @@ class Solution:
         word = word1 + word2
         dp = [[0] * len(word) for _ in word]
         res = 0
-        for l in range(1, len(word)+1):
-            for i in range(0, len(word) - l + 1):
-                j = i + l - 1
-                
+        for i in range(len(word) - 1, -1, -1):
+            dp[i][i] = 1
+            for j in range(i + 1, len(word)):
                 if word[i] == word[j]:
-                    if j - i < 2 :
-                        dp[i][j] = j - i + 1
+                    if   j - i < 2 :
+                        dp[i][j] =  j - i + 1
                     else:
                         dp[i][j] = 2 + dp[i + 1][j - 1]
                     if i < n1 and j >= n1:
