@@ -19,7 +19,7 @@ class Solution:
         
         n = len(nums)
         maxn = 0
-        for i in range(1, n-1):
+        for i in range(n):
             if right[n-i-1] > 1 and left[i] > 1:
                 maxn = max(maxn, right[n-i-1] + left[i] - 1)
         return n - maxn
