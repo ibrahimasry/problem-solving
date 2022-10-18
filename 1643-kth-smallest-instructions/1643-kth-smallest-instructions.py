@@ -5,11 +5,11 @@ class Solution:
         res = ""
         length = h + v
         for i in range(length):
-            startWithK = comb(length-i-1, v)
-            if k <= startWithK:
+            startWithH = comb(length-i-1, v)
+            if k <= startWithH:
                res += "H"
             else :
-                k -= startWithK
+                k -= startWithH
                 res += "V"
                 v -= 1
         return res
