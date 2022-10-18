@@ -7,11 +7,9 @@ var maxStudents = function(seats) {
  let m = seats[0].length
  let n = seats.length
  const  recurse = (pos, currRow, prevRow , cache) => {
-            if (pos == n * m)
-                return 0
+            if (pos == n * m) return 0
             let key = `${pos} - ${currRow} - ${prevRow}`
-            if (key in cache)
-                return cache[key]
+            if (key in cache) return cache[key]
             let i = Math.floor(pos / m)
             let j = pos % m
             if (j == 0){
@@ -24,14 +22,11 @@ var maxStudents = function(seats) {
 
             ans = recurse(pos + 1, currRow, prevRow, cache)
             if (t == "."){
-             let  l = true
-             let tl = true
-             let tr = true
+             let  l = tl = tr = true
 
                 if (j != 0){
                     l = ((currRow & (1 << (j-1))) == 0)
-                    if (i!= 0)
-                        tl = ((prevRow & (1 << (j-1))) == 0)
+                    tl = ((prevRow & (1 << (j-1))) == 0)
                 }
                 if (j != m - 1)
                     tr = ((prevRow & (1 << (j+1))) == 0)
