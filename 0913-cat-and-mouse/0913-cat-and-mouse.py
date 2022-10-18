@@ -9,9 +9,17 @@ class Solution:
                 for nei in graph[c]:
                     if nei == 0:
                         continue
+                    r1 = result[(m, nei, 2)]
+                    if r1 > 0: 
+                         continue
+
                     nodes.append((m, nei, 2))
             else :
                 for nei in graph[m]:
+                    r1 = result[(nei, c, 1)]
+                    if r1 > 0: 
+                         continue
+
                     nodes.append((nei, c, 1))
             return nodes
         def nextStateFailed(m,c,t):
@@ -40,10 +48,6 @@ class Solution:
             r = result[(m,c,t)]
 
             for m1,c1,t1 in getPreState(m,c,t):
-                
-                r1 = result[(m1,c1,t1)]
-                if r1 > 0: 
-                    continue
                 if r == 3-t:
                     result[(m1,c1,t1)] = r
                     queue.append((m1,c1,t1))
