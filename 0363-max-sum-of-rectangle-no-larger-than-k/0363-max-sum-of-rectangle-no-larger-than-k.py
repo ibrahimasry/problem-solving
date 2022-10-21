@@ -7,8 +7,6 @@ class Solution:
             ans = -sys.maxsize
             for num in arr :
                 currSum += num
-                if currSum == k :
-                    return k
                 index = bisect_left(sortedSum, (currSum - k ))
                 if index < len(sortedSum):
                     ans = max(ans, currSum - sortedSum[index])
