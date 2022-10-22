@@ -24,10 +24,6 @@ class Solution:
         seen = set()
         while len(pq) > 0:
             w, i, j = heapq.heappop(pq)
-            if (i, j) in seen :
-                continue
-            if (i, j) == (n-1, m-1):
-                return w
             seen.add((i,j))
             for x, y, w2 in graph[(i, j)]:
                 total = w + w2
