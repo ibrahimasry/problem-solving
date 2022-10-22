@@ -17,17 +17,20 @@ class Solution:
                     nj = j + dirs[d][1]
                     if 0 <= ni < n and 0 <= nj < m :
                         graph[(i, j)].append((ni, nj, w))
-        cost = {(i, j) : sys.maxsize for i in range(n)  for j in range(m)}
-        
-        cost[(0,0)] = 0
-        pq = [(0, 0, 0)]
+        pq = deque()
+        pq.append((0,0,0))
         seen = set()
         while len(pq) > 0:
-            w, i, j = heapq.heappop(pq)
+            i, j, w = pq.popleft()
+            if(i,j) in seen:
+                continue
+
             seen.add((i,j))
+            if (i, j) == (n-1, m-1):
+                return w
             for x, y, w2 in graph[(i, j)]:
-                total = w + w2
-                if (x, y) not in seen and total < cost[(x, y)]:
-                    heapq.heappush(pq, (total, x, y))
-                    cost[(x, y)] = total
-        return cost[(n-1, m-1)]
+                if w2 == 0:
+                    pq.appendleft((x, y, w))
+                else :
+                    pq.append((x, y, w + w2))
+        return -1
