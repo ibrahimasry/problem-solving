@@ -2,17 +2,17 @@ class Solution:
     def stoneGameIII(self, stones: List[int]) -> str:
         
         n = len(stones)
-        dp = [-sys.maxsize] * n + [0,0,0]
-        
-        
-        for i in range(n-1, -1,-1):
-            for k in [1,2,3]:
-                dp[i] = max(dp[i] , sum(stones[i:i+k]) - dp[i+k])
-                
-        res = dp[0]
-        
+        @lru_cache(None)
+        def dp(i):
+            if i >= n:
+                return 0
+            res = -sys.maxsize
+            for k in range(1,4):
+                res = max(res, sum(stones[i:i+k]) - dp(i+k))
+            return res
+        res = dp(0)
+        if res > 0:
+            return "Alice"
         if res < 0:
             return "Bob"
-        if res > 0 :
-            return "Alice"
         return "Tie"
