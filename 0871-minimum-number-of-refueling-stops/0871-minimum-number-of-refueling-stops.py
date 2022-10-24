@@ -1,11 +1,6 @@
 class Solution:
     def minRefuelStops(self, target: int, startFuel: int, stations: List[List[int]]) -> int:
         
-        if len(stations) == 0 :
-            if  startFuel - target >= 0 :
-                return 0
-            else :
-                return -1
         curr = startFuel
         pq = []
         i = 0
