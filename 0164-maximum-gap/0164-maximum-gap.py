@@ -21,8 +21,6 @@ class Solution:
         ans = 0
         pre = -1
         for i in sorted(buckets.keys()):
-            if buckets[i][0] == sys.maxsize :
-                continue
             if pre != -1:
                 ans = max(ans, buckets[i][0] - pre)
             pre = buckets[i][1]
