@@ -8,7 +8,7 @@ class Solution:
         if diff == 0 :
             return 0
         n = len(nums)
-        bucketSize = max(diff // (n-1), 1)
+        bucketSize = max(diff // (n), 1)
         buckets = defaultdict(list)
 
         for num in nums:
