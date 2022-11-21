@@ -17,7 +17,7 @@ class Solution:
                 ny = y + j
                 if n > nx >= 0 and n > ny >= 0 :
                     currCost = cost + max(0, grid[nx][ny] - max(grid[x][y], cost)) 
-                    if (currCost + cost, nx, ny) not in seen and costs[nx][ny] > currCost :
+                    if (currCost, nx, ny) not in seen and costs[nx][ny] > currCost :
                         costs[nx][ny] = currCost 
                         heapq.heappush(hq, (currCost, nx, ny))
         return costs[-1][-1]
