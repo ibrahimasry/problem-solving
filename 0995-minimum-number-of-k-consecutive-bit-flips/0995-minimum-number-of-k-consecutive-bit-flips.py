@@ -8,13 +8,12 @@ class Solution:
         for i , curr in enumerate(nums):
 
             if flipped[i]:
-                runningFlips -= 1
+                runningFlips ^= 1
 
-            if curr ^ (runningFlips % 2) == 0:
-                if i + k > n and (curr ^ (runningFlips % 2)) == 0:
+            if not curr ^ runningFlips  :
+                if i + k > n :
                      return -1
-
                 count += 1
-                runningFlips += 1
+                runningFlips ^= 1
                 flipped[i+k] = True
         return count
