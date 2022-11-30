@@ -5,7 +5,7 @@ class Solution:
         start = 0
         ans = 0
         
-        for c in range(2 * n -1):
+        for c in range(2 * n):
             left = c // 2
             right = left + c % 2
             while start <= left and right < n and s[left] == s[right]:
