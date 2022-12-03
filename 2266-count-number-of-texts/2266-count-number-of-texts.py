@@ -8,6 +8,6 @@ class Solution:
                 r += 1
             else :
                 r = 1
-            l = min(r, 4 if pressedKeys[i] in {"9", "7"} else 3)
+            l = min(r, 4 if pressedKeys[i] in "97" else 3)
             dp = dp[1:] + [sum(dp[-l:])]
         return dp[-1] % (10**9 +7)
