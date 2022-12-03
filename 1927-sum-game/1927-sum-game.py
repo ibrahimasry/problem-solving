@@ -14,8 +14,14 @@ class Solution:
                     count -= 1
                 else :
                     diff -= int(c)
-        if count > 0 and diff > 0:
+        if count * diff > 0  :
             return True
-        if count < 0 and diff < 0:
+        if  count== 0 and diff == 0  :
+            return False
+        if count == 0:
             return True
-        return (abs(count)/2) * 9 != abs(diff)
+        if abs(count) % 2  or abs(diff) < 9:
+            return True
+        if (abs(count)//2) * 9 < abs(diff) or abs(count//2) * 9 > abs(diff):
+            return True
+        return abs(diff) % 9 != 0
