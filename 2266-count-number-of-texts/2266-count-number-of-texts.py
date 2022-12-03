@@ -1,7 +1,7 @@
 class Solution:
     def countTexts(self, pressedKeys: str) -> int:
         
-        dp = [1,1,1,1]
+        dp = [0,0,1,1]
         r = 1
         for i in range(1, len(pressedKeys)):
             if pressedKeys[i] == pressedKeys[i-1]:
