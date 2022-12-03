@@ -24,4 +24,4 @@ class Solution:
             return True
         if (abs(count)//2) * 9 < abs(diff) or abs(count//2) * 9 > abs(diff):
             return True
-        return abs(diff) % 9 != 0
+        return False
