@@ -18,4 +18,6 @@ class Solution:
             return True
         if count < 0 and diff < 0:
             return True
-        return (abs(count)/2) * 9 != abs(diff)
+        if abs(count) % 2 :
+            return True
+        return (abs(count)//2) * 9 != abs(diff)
