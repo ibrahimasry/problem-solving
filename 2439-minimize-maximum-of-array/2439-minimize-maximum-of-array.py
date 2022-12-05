@@ -11,19 +11,18 @@ class Solution:
             can = True
             if nums[0] > m:
                 can = False
-            taken = 0
-            for i in range(1, len(nums)):
-                prev = nums[i-1] + taken
-                curr = nums[i]
-                
-                
-                diff = (prev - m)
-                
-                
-                if curr + diff > m:
-                    can = False
-                    break
-                taken = diff
+            else:
+                taken = 0
+                for i in range(1, len(nums)):
+                    prev = nums[i-1] + taken
+                    curr = nums[i]
+                    diff = (prev - m)
+
+
+                    if curr + diff > m:
+                        can = False
+                        break
+                    taken = diff
             if  can :
                 r = m
             else :
