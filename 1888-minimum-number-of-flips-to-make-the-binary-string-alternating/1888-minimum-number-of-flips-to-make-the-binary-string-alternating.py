@@ -12,7 +12,7 @@ class Solution:
                 else :
                     prefix.append(prefix[-1] + 1)
                 
-                if i >= (len(s) // 2):
+                if i >= (len(s) // 2) - 1:
                             
                     res = min(res, prefix[-1] - prefix[-1-(len(s)//2)])
                 flip ^= 1
