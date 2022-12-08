@@ -19,9 +19,4 @@ class Solution:
             
         dfs(root1, arr1)
         dfs(root2, arr2)
-        if len(arr1) != len(arr2):
-            return False
-        for i, v in enumerate(arr1):
-            if v != arr2[i]:
-                return False
-        return True
+        return arr1 == arr2
