@@ -9,19 +9,19 @@ class Solution:
                 res += i
         if len(c1) == 0:
             return 0
-        dom = max(c1.keys() , key=lambda x:c1[x])
-        countOfDom = c1[dom] 
-        dupSum = sum(c1.values())
-        if dupSum - countOfDom >=countOfDom:
+        maxNumber =  max(c1.keys() , key=lambda x:c1[x])
+        countOfMax = c1[maxNumber] 
+        totalSum = sum(c1.values())
+        if totalSum - countOfMax >= countOfMax:
             return res
         
-        countOfDom = countOfDom - (dupSum - countOfDom)
+        countOfMax = countOfMax - (totalSum - countOfMax)
         for i in range(n):
-            if nums1[i] == nums2[i] or nums1[i] == dom or nums2[i] == dom:
+            if nums1[i] == nums2[i] or nums1[i] == maxNumber or nums2[i] == maxNumber:
                 continue
-            countOfDom -= 1
+            countOfMax -= 1
             res += i
-            if countOfDom == 0:
+            if countOfMax == 0:
                 return res
         return -1
                 
