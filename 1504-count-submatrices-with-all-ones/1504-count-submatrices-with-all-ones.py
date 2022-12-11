@@ -6,14 +6,11 @@ class Solution:
         l = [-1]
         su = 0
 
-        for i in range(self.n):
-            while len(l) > 1 and r[i] <= r[l[-1]]:
+        for i in range(self.n + 1):
+            while (len(l) > 1 and (i == self.n  or r[i] <= r[l[-1]] )):
                 k = l.pop()
                 su += r[k] * (k - l[-1]) * (i - k)
             l.append(i)
-        while len(l) > 1:
-            k = l.pop()
-            su += r[k] * (k - l[-1]) * (self.n - k)
 
         return su
 
