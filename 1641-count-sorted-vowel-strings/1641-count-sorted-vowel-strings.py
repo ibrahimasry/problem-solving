@@ -12,3 +12,12 @@ class Solution:
                 res += dp(curr - 1, c)
             return res
         return dp(n, 0)
+    
+    
+        dp = [1] * 6
+        dp[0] = 0
+        
+        for i in range(1,n+1):
+            for k in range(1, 6):
+                dp[k] += dp[k-1]
+        return sum(dp)
