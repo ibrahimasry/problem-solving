@@ -1,29 +1,16 @@
 class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
+        if n == 0:
+            return len(tasks)
         freq = Counter(tasks)
         
-        pq = []
+        maxKey,maxKeyValue = max(freq.items(),key=lambda x:x[1])
+        total = sum(freq.values())
         
-        for k, v in freq.items():
-            heapq.heappush(pq, -v)
-            
-        res = 0
-        prev = []
-        while pq:
-            
-            prev = []
-            count = -1
-            while pq and count < n:
-                prev.append(heapq.heappop(pq))
-                prev[-1] += 1
-                res += 1
-                count += 1
-            prevLen = len(prev) - 1
-            for v in prev:
-                if v < 0:
-                    heapq.heappush(pq, v)
-            if prevLen < n  and pq:
-                res += n-prevLen
-
-
+        maxKeyCount = sum([1 for k, v in freq.items() if v == maxKeyValue])
+        gap = (n - (maxKeyCount-1)) * (maxKeyValue -1)
+        gap -= (total- maxKeyCount * maxKeyValue)
+        gap = 0 if gap < 0 else gap
+        return total + gap
+        
         return res
