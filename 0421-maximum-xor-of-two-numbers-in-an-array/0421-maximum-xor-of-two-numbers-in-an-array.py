@@ -16,22 +16,15 @@ class Solution:
                 res = 0
                 tri = self.tri
                 for i in range(31,-1,-1):
-                    node = (n >> i) & 1
-                    req = 0 if node == 1 else 0
-                    if node == 0:
-                        if 1 in tri:
-                            tri = tri[1]
-                            res = res | ((1) << i)
-                        else :
-                            tri = tri[0]
-                            res = res | ((0) << i)
+                    node = (n >> i) & 1 
+                    req = 0 if node == 1 else 1
+                    
+                    if req in tri:
+                        tri = tri[req]
+                        res = res | ((req) << i)
                     else :
-                        if 0 in tri:
-                            tri = tri[0]
-                            res = res | ((0) << i)
-                        else :
-                            tri = tri[1]
-                            res = res | ((1) << i)
+                        tri = tri[node]
+                        res = res | ((node) << i)
 
 
                         
@@ -43,6 +36,5 @@ class Solution:
 
         for n in nums:
             curr = tri.search(n)
-            print(curr)
             res = max(res, curr^n)
         return res
