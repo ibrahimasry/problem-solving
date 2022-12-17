@@ -5,7 +5,4 @@ class Solution:
         for u, v in roads:
             degrees[u] += 1
             degrees[v] += 1
-        res = 0
-        for i, x in enumerate(sorted(degrees),1):
-            res += x * (i)
-        return res
+        return sum([x*i for i, x in enumerate(sorted(degrees),1)])
