@@ -6,6 +6,6 @@ class Solution:
             degrees[u] += 1
             degrees[v] += 1
         res = 0
-        for i, x in enumerate(sorted(degrees)):
-            res += x * (i+1)
+        for i, x in enumerate(sorted(degrees),1):
+            res += x * (i)
         return res
