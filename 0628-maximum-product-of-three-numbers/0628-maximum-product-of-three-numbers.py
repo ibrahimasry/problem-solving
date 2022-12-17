@@ -14,8 +14,6 @@ class Solution:
                 min1, min2 = n, min1
             elif n < min2:
                 min2 = n
-        if min1 != inf and min2 != inf:
-            return max(max3*max1*max2, max1*min2*min1)
-        return max3*max1*max2
+        return max(max3*max1*max2, max1*min2*min1)
                 
         
