@@ -12,12 +12,10 @@ class Solution:
                 dryDays.add(day)
             else:
                 if lake in rainDays:
-                    prev = rainDays[lake]
-                    nextDry = bisect.bisect_left(dryDays,prev)
+                    nextDry = bisect.bisect_left(dryDays,rainDays[lake])
                     if nextDry == len(dryDays):
                         return []
-                    nextDryVal = dryDays[nextDry]
-                    res[nextDryVal] = lake
+                    res[dryDays[nextDry]] = lake
                     dryDays.pop(nextDry)
                 rainDays[lake] = day
                 res.append(-1)
