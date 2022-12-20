@@ -11,6 +11,6 @@ class Solution:
                 count[a][b] += 1
         for i in range(26):
             if count[i][i]:
-                ans += (count[i][i] * 2)
+                ans += 2
                 break
         return ans
