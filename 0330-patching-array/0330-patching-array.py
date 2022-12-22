@@ -8,7 +8,7 @@ class Solution:
         for num in nums:
             while num - maxNum > 1:
                 if maxNum >= n:
-                    return ans
+                    break
                 ans += 1
                 maxNum += (maxNum +  1)
             maxNum = maxNum + num
