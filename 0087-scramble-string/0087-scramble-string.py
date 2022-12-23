@@ -13,7 +13,7 @@ class Solution:
             for i in range(1,len(s1)):
                 if dp(s1[:i],s2[:i]) and dp(s1[i:],s2[i:]):
                     return True
-                if dp(s1[:i],s2[len(s2)-i:]) and dp(s1[i:],s2[:-i]):
+                if dp(s1[:i],s2[-i:]) and dp(s1[i:],s2[:-i]):
                     return True
             return False
         return dp(s1,s2)
