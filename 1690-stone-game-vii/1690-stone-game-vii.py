@@ -2,19 +2,22 @@ class Solution:
     def stoneGameVII(self, stones: List[int]) -> int:
         
         
-        n = len(stones)
-        preSum = [0] * (n + 1)
-        for i in range(n):
-            preSum[i + 1] = preSum[i] + stones[i]
-
-        def getSum(left, right):
-            return preSum[right + 1] - preSum[left]
-
         @lru_cache(2000)
-        def dp(left, right):
-            if left == right: return 0  # only 1 stone, score = 0 -> difference = 0 as well
-            scoreRemoveLeftMost = getSum(left + 1, right)
-            scoreRemoveRightMost = getSum(left, right - 1)
-            return max(scoreRemoveLeftMost - dp(left + 1, right), scoreRemoveRightMost - dp(left, right - 1))
+        def dp(i,j):
+            
+            if i >= j :
+                return 0
+            curr = 0
+            if i == 0:
+                curr = prefix[j]
+            else :
+                curr= prefix[j] - prefix[i-1]
+            return max(curr - stones[i] - dp(i+1,j), curr - stones[j] - dp(i,j-1))
+        
+        n = len(stones)
+        prefix = [0] * n
+        prefix[0] = stones[0]
+        for i in range(1,n):
+            prefix[i] += prefix[i-1] + stones[i]
 
-        return dp(0, n - 1)
+        return dp(0, n-1)
