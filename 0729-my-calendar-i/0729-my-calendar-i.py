@@ -6,12 +6,8 @@ class MyCalendar:
 
     def book(self, start: int, end: int) -> bool:
         books = self.books
-        idx = self.bst(self.books, start)
-        if idx == len(self.books) :
-        
-            books.add((start,end))
-            return True
-        if self.books[idx][0] >= end:
+        idx = bisect.bisect_left(books,start+1 , key=lambda x:x[1])
+        if idx == len(self.books) or books[idx][0] >= end :
             books.add((start,end))
             return True
         return False
