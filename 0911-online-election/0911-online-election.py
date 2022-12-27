@@ -1,7 +1,7 @@
 class TopVotedCandidate:
 
     def __init__(self, persons: List[int], times: List[int]):
-        self.leaders = [0] * len(persons)
+        self.leaders = []
         self.count = defaultdict(int)
         leader= 0
         maxTotal = 0
@@ -12,8 +12,7 @@ class TopVotedCandidate:
             if count[p] >= maxTotal:
                 leader = p
                 maxTotal = count[p]
-            leaders.append((t,leader))
-
+                leaders.append((t,leader))
 
     def q(self, t: int) -> int:
         
