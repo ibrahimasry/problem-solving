@@ -1,20 +1,17 @@
 class Solution:
     def platesBetweenCandles(self, s: str, queries: List[List[int]]) -> List[int]:
         n = len(s)
-        prefix = [1 if c == "*" else 0 for c in s ]
-        left = [-1] * n
-        right = [-1] * n
+        prefix = [0] + [1 if c == "*" else 0 for c in s ]
+        left   = [-1] * n
+        right  = [-1] * n
 
-        for i in range(1, n):
+        for i in range(1, n+1):
             prefix[i] += prefix[i-1]
-        prefix = [0] + prefix
         lastLeft = -1
         lastRight = -1
         for i in range(n):
-            if s[i] == '|':
-                lastLeft = i
-            if s[~i] == "|" :
-                lastRight = n - i - 1
+            if s[i] == '|'  : lastLeft = i
+            if s[~i] == "|" : lastRight = n - i - 1
             left[i] = lastLeft
             right[~i] = lastRight
         for i, (s, e) in enumerate(queries):
