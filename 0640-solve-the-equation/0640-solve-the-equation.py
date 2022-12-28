@@ -6,7 +6,6 @@ class Solution:
         flipx = 1
         flipn = -1
         i = 0
-        equation = "+" + equation + "+"
         k = len(equation)
 
         while i < k:
