@@ -1,11 +1,10 @@
 class Solution:
     def solveEquation(self, equation: str) -> str:
-        x = []
-        nums = []
-        prev = 1
-        flagx = 1
-        flag = -1
-        n = 0
+        x = 0
+        nums = 0
+        sign = 1
+        flipx = 1
+        flipn = -1
         i = 0
         equation = "+" + equation + "+"
         k = len(equation)
@@ -14,16 +13,16 @@ class Solution:
             curr = equation[i]
             if curr in ["-", "+"]:
                 if curr == "-":
-                    prev = -1
+                    sign = -1
                 else:
-                    prev = 1 
+                    sign = 1 
             elif curr == "=":
-                prev = 1
-                flag   = 1
-                flagx  = -1
+                sign      = 1
+                flipn    *= -1 
+                flipx    *= -1
             
             elif curr == "x":
-                x.append(prev * flagx)
+                x += sign * flipx
             else :
                 n = 0
                 while i < k and equation[i].isdigit():
@@ -31,17 +30,13 @@ class Solution:
                     i += 1
                 i -= 1
                 if (i+1 < k  and equation[i+1] != "x" ) or i+1 == k:
-                    nums.append(prev * n * flag)
-                elif i + 1 < k and equation[i+1] == "x" :
-                    x.append(prev * n * flagx)
+                    nums += sign * n * flipn
+                if i + 1 < k and equation[i+1] == "x" :
+                    x += n * sign * flipx
                     i += 1
-                n = 1
-
-                    
-
             i += 1
-        if sum(x) == 0 and sum(nums) != 0:
+        if x == 0 and nums != 0:
             return "No solution"
-        if sum(x) == 0:
+        if x == 0:
             return "Infinite solutions"
-        return "x=" + str(sum(nums) //sum(x))
+        return "x=" + str(nums // x)
