@@ -1,7 +1,6 @@
 class Codec:
     alpha = string.ascii_letters + "123456790"
     def __init__(self):
-        self.longToCode  = {}
         self.codeToLong = {}
     def encode(self, longUrl: str) -> str:
         """Encodes a URL to a shortened URL.
@@ -9,7 +8,6 @@ class Codec:
         res = "http://tinyurl.com/"
         path = longUrl.split('/')[1:]
         code = str([random.choice(self.alpha) for i in range(6)])
-        self.longToCode[longUrl] = code
         self.codeToLong[code] = longUrl
         return res + code
 
