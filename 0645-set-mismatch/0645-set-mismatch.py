@@ -6,7 +6,7 @@ class Solution:
             xor ^= n
         for i in range(1,len(nums)+1):
             xor ^= i
-        right = (xor & ~(xor-1))
+        right = (xor & -xor)
         
         for i in nums:
             if right & i != 0:
