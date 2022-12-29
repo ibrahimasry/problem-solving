@@ -10,12 +10,12 @@ class Solution:
         ans = []
         while i < len(tasks) or pq :
             while i < len(tasks) and tasks[i][0] <= time:
-                heapq.heappush(pq, (tasks[i][1], tasks[i][2],i))
+                heapq.heappush(pq, (tasks[i][1], tasks[i][2]))
                 i += 1
             if i < len(tasks) and not pq:
                 time = tasks[i][0]
             if pq:
-                t , k,j = heapq.heappop(pq)
+                t , k = heapq.heappop(pq)
                 time += t
                 ans.append(k)
         return ans
