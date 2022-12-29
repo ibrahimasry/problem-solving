@@ -8,7 +8,7 @@ class Solution:
         pq = []
         i = 0
         ans = []
-        while i < len(tasks) or pq :
+        while len(ans) < len(tasks) :
             while i < len(tasks) and tasks[i][0] <= time:
                 heapq.heappush(pq, (tasks[i][1], tasks[i][2]))
                 i += 1
