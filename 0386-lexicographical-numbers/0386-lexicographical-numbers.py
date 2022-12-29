@@ -8,9 +8,10 @@ class Solution:
             nonlocal ans
             if int(curr) <= n:
                 ans.append(int(curr))
+            else :
+                return
             for i in range(0,10):
-                if curr * 10 + i  <= n:
-                    dfs(curr  * 10 + i,i)
+                dfs(curr + str(i),i)
         for i in range(1,10):
-            dfs(i , 0)
+            dfs(str(i) , 0)
         return ans
