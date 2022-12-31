@@ -9,8 +9,6 @@ class Solution:
         @cache
         def dfs(start,end):
             ans = []
-            if end <= start:
-                return []
             if end - start == 1 :
                 return [TreeNode(0)]
             if (end - start) % 2 == 0:
