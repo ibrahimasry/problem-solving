@@ -3,7 +3,7 @@
  * @param {number} right
  * @return {number[]}
  */
-var closestPrimes = function(left, right) {
+const closestPrimes = function(left, right) {
         const primes = Array(right + 1).fill(true)
         let n1 = 1
         let n2 = -1 , prev = -1
