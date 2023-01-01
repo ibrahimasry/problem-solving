@@ -11,10 +11,8 @@ const closestPrimes = function(left, right) {
         for(let i = 2; i <= right; i++){
             if (primes[i]){
                 if (i >= left){
-                    if (prev != -1){
-                        if (n2 - n1 > i - prev || (n2 * n1 < 0))
-                            [n1 , n2] = [prev , i]
-                    }
+                    if (n2 - n1 > i - prev || (n2 * n1 < 0))
+                        [n1 , n2] = [prev , i]
                     prev = i
                 }
             }
