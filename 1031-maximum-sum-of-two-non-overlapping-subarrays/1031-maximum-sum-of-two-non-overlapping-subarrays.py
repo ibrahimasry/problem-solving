@@ -2,15 +2,14 @@ class Solution:
     def maxSumTwoNoOverlap(self, nums: List[int], l: int, m: int) -> int:
         
         def overlap(nums, l, m):
-            f = best = sum(nums[:l])
-            s = sum(nums[:l+m]) - f
-            res = f + s
+            prev = bestPrev = sum(nums[:l])
+            running = sum(nums[:l+m]) - prev
+            res = prev + running
             for i in range(l+m,len(nums)):
-
-                best = max(best,f - nums[i-l-m] + nums[i-m])
-                s = s - nums[i-m] + nums[i]
-                f = f - nums[i-l-m] + nums[i-m]
-                res = max(res, best + s)
+                prev = prev - nums[i-l-m] + nums[i-m]
+                bestPrev = max(bestPrev, prev)
+                running = running - nums[i-m] + nums[i]
+                res = max(res, bestPrev + running)
             return res
         return max(overlap(nums,l,m) , overlap(nums,m,l))
         
