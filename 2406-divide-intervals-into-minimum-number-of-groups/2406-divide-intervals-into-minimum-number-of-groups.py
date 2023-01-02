@@ -1,17 +1,14 @@
 class Solution:
     def minGroups(self, intervals: List[List[int]]) -> int:
-        if len(intervals) == 1:
-            return 1
-        events = []
+        events = Counter()
         for s,e in intervals:
-            events.append([s,1])
-            events.append([e+1,-1])
-        events.sort()
+            events[s] += 1
+            events[e+1] -= 1
         
         res = 0
         running = 0
         
-        for _, dir in events:
+        for _, dir in sorted(events.items()):
             running += dir
             res = max(running, res)
         return res
