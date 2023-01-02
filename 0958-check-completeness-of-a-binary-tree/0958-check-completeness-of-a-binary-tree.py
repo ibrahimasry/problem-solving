@@ -14,13 +14,12 @@ class Solution(object):
         last = False
         q.append(root)
         while q :
-            for _ in range(len(q)):
-                curr = q.popleft()
-                if curr and last:
-                    return False
-                if curr:
-                    q.append(curr.left)
-                    q.append(curr.right)
-                else:
-                    last = True
+            curr = q.popleft()
+            if curr and last:
+                return False
+            if curr:
+                q.append(curr.left)
+                q.append(curr.right)
+            else:
+                last = True
         return True
