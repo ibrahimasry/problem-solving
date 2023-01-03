@@ -3,11 +3,12 @@ class Solution:
         seen = {}
         gap = 0
         for j , v in enumerate(tasks):
+            k = j + gap
             if v in seen:
-                newgap = space - ((j+gap - seen[v]) -1)
-                if newgap >= 0:
-                    gap = newgap + gap
-            seen[v] = j + gap
+                if space > ((k - seen[v]) -1) :
+                    gap += (space - ((k - seen[v]) -1))
+                    k = j + gap
+            seen[v] = k
                 
         return gap + len(tasks)
 
