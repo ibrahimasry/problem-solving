@@ -3,9 +3,7 @@ class Solution:
         res = 1
         
         l = 1
-        for i in range(1,len(s)):
-            c = s[i]
-            c1 = s[i-1]
+        for c1 , c in zip(s[:] , s[1:]):
             if ord(c1) + 1 == ord(c):
                 l += 1
             else :
