@@ -17,8 +17,8 @@ class Solution:
                 if i + l > n:
                     break
                 f = i + l // 2
-                s1 = ((hash[f] - hash[i] * powers[(f-i)] % mod) + mod) % mod
-                s2 = ((hash[i+l] - hash[f] * powers[((i+l)-f)] % mod) + mod) % mod
+                s1 = ((hash[f] - hash[i] * powers[(f-i)]) + mod) % mod
+                s2 = ((hash[i+l] - hash[f] * powers[((i+l)-f)]) + mod) % mod
                 if s1 == s2:
                     seen.add(s1)
         return len(seen)
