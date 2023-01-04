@@ -5,9 +5,5 @@ class Solution:
         for v in count.values():
             if v < 2:
                 return -1
-            if v % 3 == 0:
-                
-                res += v//3
-            else :
-                res += (v//3) + 1
+            res += ceil(v/3)
         return res
