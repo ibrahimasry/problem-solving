@@ -10,12 +10,14 @@ class Solution:
                 if mat[0][j] == 0:
                     q.append((0,j))
                     mat[0][j] = 1
-            curr = 0
             while q:
                 i,j = q.popleft()
                 if i == row-1:
                     return True
-                for x,y in [[1,0],[-1,0],[0,-1],[0,1]]:
+                dirs = [1,0,-1,0]
+                for d in range(4):
+                    x = dirs[d]
+                    y = dirs[(d+1)%4]
                     r = i + x
                     c = j + y
                     if 0 <= r < row and 0 <= c < col and mat[r][c] == 0:
