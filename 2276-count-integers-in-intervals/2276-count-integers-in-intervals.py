@@ -9,22 +9,28 @@ class CountIntervals:
     def add(self, left: int, right: int) -> None:
         def overlap(x,y, x1,y1):
             return  x1 <= y and y1 >= x
-        if self.a:
-            i = bisect.bisect_left(self.a, (left,-1))
+        a = self.a
+        if a:
+            i = bisect.bisect_left(a, (left,-1))
             j = i
-            if j > 0 and self.a[j-1][1] >= left:
+            if j > 0 and a[j-1][1] >= left:
                 j -= 1
-            while i < len(self.a) and overlap(left,right, *self.a[i]):
-                i += 1
-            for k in range(j, i):
-                left = min(left, self.a[k][0])
-                right = max(right , self.a[k][1])
+                left = min(left, a[j][0])
+                right = max(right , a[j][1])
 
-                self.c -= ((self.a[k][1] - self.a[k][0]) + 1)
-            del self.a[j:i]
+
+            while i < len(a) and overlap(left,right, *a[i]):
+                right = max(right , a[i][1])
+                i += 1
+
+
+
+            for k in range(j, i):
+                self.c -= ((a[k][1] - a[k][0]) + 1)
+            del a[j:i]
 
         self.c += ((right - left) + 1)
-        self.a.add((left,right))
+        a.add((left,right))
 
     def count(self) -> int:
         return self.c
