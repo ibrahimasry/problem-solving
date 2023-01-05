@@ -3,6 +3,6 @@ class Solution:
         res = 0
         last = {}
         for i, c in enumerate(s):
-            last[c] = i
-            res += len(last) + sum(last.values())
+            last[c] = i + 1
+            res +=  sum(last.values())
         return res
