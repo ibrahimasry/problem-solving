@@ -10,12 +10,12 @@ class Solution:
                 m = 0
                 l = len(curr)
                 q = deque("-"+t[:len(curr)-1])
-                while m < (len(t)-len(curr)) + 1:
+                while m < (len(t)-l) + 1:
                     found = 0
                     q.popleft()
-                    q.append(t[(m+len(curr))-1])
-                    for c1,c2 in zip(curr, q):
-                        if c1 != c2 :
+                    q.append(t[(m+l) - 1])
+                    for k in range(l):
+                        if q[k] != curr[k] :
                             found += 1
                             if found > 1:
                                 break
