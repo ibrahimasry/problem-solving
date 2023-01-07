@@ -9,19 +9,12 @@ class Solution:
             for i in range(n):
                 prev = 0
                 added -= sweep[i]
-                mn = i - r
-                if i - r < 0:
-                    mn = 0
-                mx = i + r
-                if mx >= n:
-                    mx = n-1
-                total = (prefix[mx+1] - prefix[mn])  + added
+                total = (prefix[min(i+r+1,n)] - prefix[max(0, i-r)])  + added
                 if t > total:
                     req = t - total
                     added += req
                     count += req
-                    if count > k:
-                        return False
+                    if count > k: return False
                     if (i + r*2 + 1) < n:
                         sweep[i+r*2+1] = req
             return True
