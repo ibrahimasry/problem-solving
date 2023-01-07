@@ -13,9 +13,9 @@ class Solution:
                 if p and  gcd(p,i) != 1 :
                     continue
                 
-                ans += dp(c - 1, i, p) % (10**9+7)
-                ans %= (10**9+7)
+                ans += dp(c - 1, i, p) 
+                ans %= mod
 
-            return ans % (10**9+7)
-
-        return dp(n,0,0)  % (10**9+7)
+            return ans 
+        mod = 10**9 + 7
+        return dp(n,0,0) 
