@@ -10,4 +10,4 @@ class Solution:
             if curr <  0:
                 res = i+1
                 curr = 0
-        return res % len(gas)
+        return res 
