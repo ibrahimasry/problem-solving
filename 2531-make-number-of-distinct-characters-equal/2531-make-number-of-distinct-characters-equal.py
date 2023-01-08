@@ -52,7 +52,7 @@ class Solution:
         #difference is zero
 
 
-        if len(set1|set2) == len(set1) + len(set2) and len(set1) == len(set2) :
+        if  len(set1) == len(set2) :
             if len(word1) == 1:
                 return False
             return True
