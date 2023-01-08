@@ -2,14 +2,15 @@ class Solution:
     def isItPossible(self, word1: str, word2: str) -> bool:
         set1 = set(word1)
         set2 = set(word2)
-        if word1 == word2:
+        if set1 == set2:
             return True
+        if abs(len(set1) - len(set2)) > 2:
+            return False
+
         if len(set2) > len(set1):
             set2  , set1 = set1 , set2
             word2 ,word1 = word1 , word2
 
-        if abs(len(set1) - len(set2)) > 2:
-            return False
         count1 = Counter(word1)
         count2 = Counter(word2)
         #different by only Two chars
@@ -53,7 +54,7 @@ class Solution:
 
 
         if  len(set1) == len(set2) :
-            if len(word1) == 1 and len(word2) > 1:
+            if len(word1) == 1:
                 return False
             return True
         return False
