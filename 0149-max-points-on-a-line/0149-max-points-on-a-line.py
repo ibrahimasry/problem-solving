@@ -5,15 +5,12 @@ class Solution:
         res = 1
         points.sort()
         for i in range(n):
-            p1,p2= points[i]
-            count = defaultdict(int)
-            overlap  = 0
-
+            p1 ,p2= points[i]
+            count = defaultdict(lambda :1)
             for j in range(i+1,n):
                 p3, p4 = points[j]
-                x,y = p1-p3,p2-p4
+                x,y = p1-p3 , p2-p4
                 z = gcd(abs(x),abs(y))
-                count[(x//z,y//z)] += 1
-                values = [0] + list(count.values())
-                res = max(res, max(values) + 1 + overlap)
+                count[(x // z,y // z)] += 1
+                res = max(res, max(list(count.values()) + [0]))
         return res
