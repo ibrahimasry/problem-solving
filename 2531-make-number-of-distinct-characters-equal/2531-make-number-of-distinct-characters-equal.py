@@ -53,7 +53,7 @@ class Solution:
 
 
         if  len(set1) == len(set2) :
-            if len(word1) == 1:
+            if len(word1) == 1 and len(word2) > 1:
                 return False
             return True
         return False
