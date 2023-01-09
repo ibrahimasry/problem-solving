@@ -12,7 +12,5 @@ class Solution:
                 heapq.heappush(pq, [s + nums[i+1],i+1 ])
                 heapq.heappush(pq, [(s - nums[i]) + nums[i+1], i+1 ])
             k -= 1
-        if not pq:
-            return pos
         return pos - pq[0][0]
         
