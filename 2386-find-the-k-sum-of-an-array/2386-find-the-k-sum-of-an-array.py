@@ -1,11 +1,12 @@
 class Solution:
     def kSum(self, nums: List[int], k: int) -> int:
         pos = sum([num for num in nums if num > 0])
+        if k == 1:
+            return pos
+
         nums = [abs(num) for num in nums]
         nums.sort()
         pq = [[nums[0],0]]
-        if k == 1:
-            return pos
         while k>2:
             s , i = heapq.heappop(pq)
             if i < len(nums) -1:
