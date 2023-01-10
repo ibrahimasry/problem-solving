@@ -11,7 +11,7 @@ class Solution:
             for i in range(32):
                 if (curr >> i) & 1:
                     count += 1
-            if ((count - 1)/2 >  c) :
+            if count // 2 >  c :
                 ans.append(False)
             else:
                 ans.append(True)
