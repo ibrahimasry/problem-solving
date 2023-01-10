@@ -18,9 +18,10 @@ class Solution:
                 for c in cand:
                     mask2 ^= (1<<c)
                 dp[mask2] = min(dp[mask] + 1 , dp[mask2])
-            for choice in combinations(cand,k):
-                mask2 = mask
-                for c in choice:
-                    mask2 |= (1 << c)
-                dp[mask2] = min(dp[mask2] , dp[mask] + 1)
+            else:
+                for choice in combinations(cand,k):
+                    mask2 = mask
+                    for c in choice:
+                        mask2 |= (1 << c)
+                    dp[mask2] = min(dp[mask2] , dp[mask] + 1)
         return dp[-1]
