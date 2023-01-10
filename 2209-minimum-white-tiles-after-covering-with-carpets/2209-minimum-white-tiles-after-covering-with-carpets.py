@@ -6,6 +6,8 @@ class Solution:
                 return 0
             if k == 0:
                 return prefix[n] - prefix[i]
+            if k * carpetLen + i >= n:
+                return 0
             return min(dp(i+carpetLen, k-1) ,int(floor[i]) + dp(i+1,k))
         prefix = [0] + list(accumulate(map(int,floor[:])))
         n = len(floor)
