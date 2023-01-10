@@ -3,7 +3,7 @@ class Solution:
         req = [0] * n
         
         for u,v in relations:
-            req[v-1] |= (1 << (u-1) )
+            req[v-1] |= 1 << (u-1)
         dp = [inf] * (1 << n)
         dp[0] = 0
         for mask in range(1 << n):
@@ -13,7 +13,12 @@ class Solution:
             for i in range(n):
                 if (mask & 1 << i) == 0 and (req[i] & mask) == req[i]:
                     cand.append(i)
-            for choice in combinations(cand,min(k,len(cand))):
+            if len(cand) < k:
+                mask2 = mask 
+                for c in cand:
+                    mask2 ^= (1<<c)
+                dp[mask2] = min(dp[mask] + 1 , dp[mask2])
+            for choice in combinations(cand,k):
                 mask2 = mask
                 for c in choice:
                     mask2 |= (1 << c)
