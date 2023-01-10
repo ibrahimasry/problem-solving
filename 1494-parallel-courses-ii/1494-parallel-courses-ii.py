@@ -7,6 +7,8 @@ class Solution:
         dp = [inf] * (1 << n)
         dp[0] = 0
         for mask in range(1 << n):
+            if dp[mask] == inf:
+                continue
             cand = []
             for i in range(n):
                 if (mask & 1 << i) == 0 and (req[i] & mask) == req[i]:
