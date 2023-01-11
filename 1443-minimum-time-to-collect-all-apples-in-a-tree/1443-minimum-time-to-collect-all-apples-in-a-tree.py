@@ -1,14 +1,11 @@
 class Solution:
     def minTime(self, n: int, edges: List[List[int]], hasApple: List[bool]) -> int:
-        res = 0
         graph = defaultdict(list)
         for u,v in edges:
             graph[u].append(v)
             graph[v].append(u)
 
         def dfs(node,p) :
-            nonlocal res
-            l = 0
             count = 0
             common = 0
             for nei in graph[node]:
