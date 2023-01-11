@@ -8,7 +8,6 @@ class Solution:
 
         def dfs(node,p) :
             nonlocal res
-            best = 0
             l = 0
             count = 0
             common = 0
@@ -17,19 +16,11 @@ class Solution:
                     continue
                 c , dist = dfs(nei,node)
                 count += c
-                best += dist 
-                common += dist * 2
-                l = max(dist,l)
-            if node == 0 and count == 1:
-                res += common
-                return 1,1
-            if count >= 2:
-                res += common
-                return 1 , 1
-            if hasApple[node] :
-                return (count + 1 , l+1)
-            if count > 0:
-                return count , l + 1
+                common += dist
+            
+            if (count  or hasApple[node]) :
+                if node == 0:
+                    return count, common 
+                return count + 1 , common + 2 
             return 0 , 0
-        dfs(0,-1)
-        return res
+        return dfs(0,-1)[1]
