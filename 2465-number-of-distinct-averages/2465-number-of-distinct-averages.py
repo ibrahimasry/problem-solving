@@ -5,5 +5,5 @@ class Solution:
         nums.sort()
         n = len(nums)
         for i in range((n//2)):
-            seen.add((nums[i] + nums[~i]) / 2.0)
+            seen.add((nums[i] + nums[~i]) / 2)
         return len(seen) 
