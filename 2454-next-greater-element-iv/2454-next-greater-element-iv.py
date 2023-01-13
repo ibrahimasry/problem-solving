@@ -6,10 +6,10 @@ class Solution:
         pq = []
         for i, n in enumerate(nums):
             
-            while pq and nums[pq[0][1]] < n:
+            while pq and pq[0][0] < n:
                 ans[heapq.heappop(pq)[1]] = n
             while stack and nums[stack[-1]] < n:
-                heapq.heappush(pq,(nums[stack[-1]] ,stack.pop()))
+                heapq.heappush(pq, (nums[stack[-1]] , stack.pop()))
             stack.append(i)
 
                 
