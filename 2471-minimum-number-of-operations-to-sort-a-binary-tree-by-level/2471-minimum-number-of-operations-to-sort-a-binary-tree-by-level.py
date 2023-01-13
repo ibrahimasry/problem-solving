@@ -19,9 +19,8 @@ class Solution:
                     queue.append(curr.right)
             temp = sorted(range(len(queue)), key=lambda  x: queue[x].val)
             for i in range(len(temp)):
-                j = temp[i]
-                while j != i :
-                    temp[i] ,  temp[j] = temp[j] , temp[i]
+                while temp[i] != i :
                     j = temp[i]
+                    temp[i] ,  temp[j] = temp[j] , temp[i]
                     ans += 1
         return ans
