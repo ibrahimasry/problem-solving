@@ -17,7 +17,8 @@ class Solution:
                     queue.append(curr.left)
                 if curr.right:
                     queue.append(curr.right)
-            temp = sorted(range(len(queue)), key=lambda  x: queue[x].val)
+            temp = sorted([[c.val,i] for i, c in enumerate(queue)])
+            temp = [i for c,i in temp]
             for i in range(len(temp)):
                 while temp[i] != i :
                     j = temp[i]
