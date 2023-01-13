@@ -17,17 +17,12 @@ class Solution:
                     queue.append(curr.left)
                 if curr.right:
                     queue.append(curr.right)
-            indexes = {}
             temp = [curr.val for curr in queue]
-            for i in range(len(queue)):
-                indexes[temp[i]] = i
-
-            temp.sort()
+            temp = sorted(list(range(len(temp))), key=lambda  x: queue[x].val)
             for i in range(len(temp)):
-                while i != indexes[temp[i]]:
-                    t = indexes[temp[i]]
-                    r = temp[t]
-                    temp[t] = temp[i]
-                    temp[i] = r 
+                while temp[i] != i :
+                    curr = temp[i]
+                    nex = temp[curr]
+                    temp[i] ,  temp[curr] = nex, curr
                     ans += 1
         return ans
