@@ -7,7 +7,6 @@ class Solution:
                 parent[x] = find(parent[x])
             return parent[x]
         def union(x,y ):
-            nonlocal res
             r1 = find(x)
             r2 = find(y)
             if r1 != r2:
@@ -32,7 +31,7 @@ class Solution:
                         union(node, nei)
             groups = defaultdict(int)
             for node in valToNode[val]:
-                groups[find(node)] = groups[find(node)] + 1
+                groups[find(node)] +=  1
             for val in groups.values():
                 res += val * (val+1) // 2
         return res 
