@@ -9,21 +9,14 @@ class Solution:
         n = len(nums)
         pairs = 0
         for right in range(len(nums)):
+            pairs += (count[nums[right]])
             count[nums[right]] += 1
-            if count[nums[right]] > 1:
-                pairs += (count[nums[right]] - 1)
             curr = 0
-            prev = -1
+            left = prefix
             while pairs >= k:
-                count[nums[left]] -= 1
-                if count[nums[left]] >= 1:
-                    pairs -= count[nums[left]] 
+                count[nums[prefix]] -= 1
+                pairs -= count[nums[prefix]] 
+                prefix += 1
 
-                if prev == -1:
-                    prefix = left
-                    prev = 1
-                curr = ((left - prefix) + 1) * (n - right)
-
-                left += 1
-            res += curr
+            res +=  (prefix - left) * (n - right)
         return res
