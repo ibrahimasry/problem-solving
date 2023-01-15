@@ -11,7 +11,6 @@ class Solution:
         for right in range(len(nums)):
             pairs += (count[nums[right]])
             count[nums[right]] += 1
-            curr = 0
             left = prefix
             while pairs >= k:
                 count[nums[prefix]] -= 1
