@@ -1,9 +1,7 @@
 class Solution:
     def findSubsequences(self, nums: List[int]) -> List[List[int]]:
         ans = []
-        
         def sub(curr,start):
-            nonlocal ans
             if len(curr) >= 2:
                 ans.append(curr[:])
             seen = set()
