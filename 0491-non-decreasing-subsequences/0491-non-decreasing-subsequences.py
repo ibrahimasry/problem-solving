@@ -1,17 +1,19 @@
 class Solution:
     def findSubsequences(self, nums: List[int]) -> List[List[int]]:
-        ans = set()
-        n = len(nums)
-        for mask in range(1 << n):
-            curr = []
-            valid = True
-            for i in range(n):
-                if mask >> i & 1:
-                    if not curr or curr[-1] <= nums[i]:
-                        curr.append(nums[i])
-                    else :
-                        valid = False
-                        break
-            if len(curr) > 1 and valid:
-                ans.add(tuple(curr))
+        ans = []
+        
+        def sub(curr,start):
+            nonlocal ans
+            if len(curr) >= 2:
+                ans.append(curr[:])
+            seen = set()
+            for i in range(start , len(nums)):
+                if nums[i] in seen:
+                    continue
+                if not curr or curr[-1] <= nums[i]:
+                    seen.add(nums[i])
+                    curr.append(nums[i])
+                    sub(curr, i + 1)
+                    curr.pop()
+        sub([],0)
         return ans
