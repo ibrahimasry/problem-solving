@@ -8,6 +8,8 @@ class Solution:
                 if mask >> i & 1:
                     if not curr or curr[-1] <= nums[i]:
                         curr.append(nums[i])
+                    else :
+                        break
             if len(curr) > 1:
                 ans.add(tuple(curr))
         return ans
