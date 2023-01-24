@@ -9,11 +9,10 @@ class Solution:
         while q:
             for _ in range(len(q)):
                 curr = q.popleft()
-                if curr == (n * n):
-                    return steps
-                for pos in range(curr+1, min(curr + 7, n*n+1)):
+                if curr == (n * n): return steps
+                for pos in range(curr + 1, min(curr + 7, n*n + 1)):
                     r , c = divmod(pos-1,n)
-                    nex = board[~r][~c if r % 2 == 1 else c]
+                    nex = board[~r][~c if r % 2 else c]
                     i = pos if nex <= 0 else nex
                     if not (i in seen):
                         q.append(i)
