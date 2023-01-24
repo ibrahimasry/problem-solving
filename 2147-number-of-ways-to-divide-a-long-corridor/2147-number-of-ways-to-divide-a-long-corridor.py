@@ -1,10 +1,5 @@
 class Solution:
     def numberOfWays(self, corridor: str) -> int:
-        count = Counter(corridor)
-        if  count["S"] <= 2:
-            return count['S'] // 2
-        if count["S"] % 2:
-            return 0
         s = 0
         f = 0
         res = 1
@@ -14,12 +9,12 @@ class Solution:
             if c == "S":
                 s += 1
                 if s % 2 == 1 and s > 2:
-                    res *= ( f + 1) 
+                    res *= (f + 1) 
                     res %= mod
                 f = 0
             else :
                 f += 1
 
-        return res
+        return res if s >= 2 and s % 2 == 0 else 0
                 
                 
