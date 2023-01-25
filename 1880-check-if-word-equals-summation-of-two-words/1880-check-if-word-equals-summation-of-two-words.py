@@ -4,7 +4,5 @@ class Solution:
         words = []
         
         for word in [f,s,t]:
-            words.append('')
-            for c in word:
-                words[-1] += str(ord(c) - ord("a"))
+            words.append(int(''.join([str(ord(c) - ord("a")) for c in word])))
         return sum(map(int,words[:2])) == int(words[-1])
