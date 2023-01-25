@@ -6,21 +6,18 @@ class Solution:
                 continue
             graph[u].append(v)
         def bfs(node):
-            q = deque([node])
+            q = [node]
             dist = [inf] * len(edges)
             dist[node] = 0
-            while q:
-                curr = q.popleft()
+            for curr in q:
                 for nei in graph[curr]:
                     if dist[curr] + 1 < dist[nei]:
                         q.append(nei)
                         dist[nei] = dist[curr] + 1
             return dist
-        dist1 = bfs(node1)
-        dist2 = bfs(node2)
         found = -1
         curr = inf
-        for i , (d1,d2) in enumerate(zip(dist1,dist2)):
+        for i , (d1,d2) in enumerate(zip(bfs(node1),bfs(node2))):
             if max(d1,d2) < curr:
                 curr = max(d1,d2)   
                 found = i
