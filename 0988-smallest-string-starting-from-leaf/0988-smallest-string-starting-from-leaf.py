@@ -9,16 +9,13 @@ class Solution:
         ans = None
         def dfs(node , p):
             nonlocal ans
-            if not node:
-                return
             curr = chr(node.val + ord('a'))
-
             if not node.left and  not node.right:
                 if not ans or ans > curr + p:
                     ans = curr + p
-            else :
-                dfs(node.left  , curr + p)
-                dfs(node.right , curr + p)
+            elif node:
+                node.left  and dfs(node.left  , curr + p)
+                node.right and dfs(node.right , curr + p)
         dfs(root , "")
         return ans            
             
