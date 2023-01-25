@@ -1,41 +1,51 @@
-class Solution:
-    def cutOffTree(self, forest: List[List[int]]) -> int:
-        noOfRows = len(forest)
-        noOfColumns = len(forest[0])
-		
-		#step 1 
-		
-        trees = [ (forest[i][j], i, j) for i in range(noOfRows) for j in range(noOfColumns) if forest[i][j] > 1 ]
-        trees = sorted(trees)
-		
-		#Implementation of step 3 BFS
-		
-        def bfs(row,col,treeX,treeY) :
-            visited = [ [False for j in range(noOfColumns)] for i in range(noOfRows)]
-            queue = deque([])
-            queue.append( (row,col,0) )
-            while queue :
-                currX,currY,currSteps = queue.popleft()
-                if (currX == treeX) and (currY == treeY) :
-                    return currSteps 
-                for r,c in [ (currX + 1,currY), (currX - 1,currY), (currX,currY + 1), (currX,currY - 1) ] :  
-                    if (r >= 0) and (r < noOfRows) and (c >= 0) and (c < noOfColumns) and (not visited[r][c]) and (forest[r][c] > 0) :
-                        visited[r][c] = True 
-                        queue.append( ( r, c, currSteps + 1)  )
-            return -1 
+/**
+ * @param {number[][]} forest
+ * @return {number}
+ */
+var cutOffTree = function(forest) {
+        let n = forest[0].length
+        let m = forest.length
+        const dirs = (i,j) => [[i,j-1],[i,j+1],[i-1,j],[i+1,j]]
+        const mat =  (m,n) => Array(m).fill(0).map(row => Array(n).fill(Infinity))
+        const neis = (dist, i,j) => dirs(i,j).filter(([x,y])=> 0 <= x && x < m && 0 <= y  && y < n && dist[x][y] == Infinity && forest[x][y] != 0)
+
+        const tree = []
+        forest.forEach((row,i) => row.forEach((e,j) => e > 1 && tree.push([e,i,j])))
+        tree.sort((a,b)=> b[0] - a[0])
+
         
-        x = 0
-        y = 0 
-        totalSteps = 0 
-		
-		#step 2 
-		
-        for tree in trees :
-            steps = bfs(x,y,tree[1],tree[2]) #step 3 
-            if steps < 0 :
-                return -1 
-            totalSteps += steps 
-            x = tree[1]
-            y = tree[2]
+        let ans = 0
+        let start = [0,0]
+        while (tree.length){
+            const [target , i , j] = tree.pop()
+            if (start[0] == i && start[1] == j)
+                continue
+            const dist = bfs(start,target)
+            if (dist == -1)
+                return -1
+            start = [i,j]
+            ans += dist
+        }
+        return ans
+    
+    
+        function bfs(start, target){
+            const q = new Queue();
+            q.push(start)
+            const dist = mat(m,n)
+            dist[start[0]][start[1]] = 0
+            while (!q.isEmpty()){
+               let [i,j] = q.pop()
+                for (const [x,y] of neis(dist, i,j)){
+                    q.push([x,y])
+                    dist[x][y] = dist[i][j] + 1
+                    if (target == forest[x][y])
+                        return dist[x][y]
+            }
+        }
+            return -1
+     }
+
             
-        return totalSteps 
+    
+};
