@@ -1,41 +1,32 @@
 class Solution:
     def cutOffTree(self, forest: List[List[int]]) -> int:
-        noOfRows = len(forest)
-        noOfColumns = len(forest[0])
-		
-		#step 1 
-		
-        trees = [ (forest[i][j], i, j) for i in range(noOfRows) for j in range(noOfColumns) if forest[i][j] > 1 ]
-        trees = sorted(trees)
-		
-		#Implementation of step 3 BFS
-		
-        def bfs(row,col,treeX,treeY) :
-            visited = [ [False for j in range(noOfColumns)] for i in range(noOfRows)]
-            queue = deque([])
-            queue.append( (row,col,0) )
-            while queue :
-                currX,currY,currSteps = queue.popleft()
-                if (currX == treeX) and (currY == treeY) :
-                    return currSteps 
-                for r,c in [ (currX + 1,currY), (currX - 1,currY), (currX,currY + 1), (currX,currY - 1) ] :  
-                    if (r >= 0) and (r < noOfRows) and (c >= 0) and (c < noOfColumns) and (not visited[r][c]) and (forest[r][c] > 0) :
-                        visited[r][c] = True 
-                        queue.append( ( r, c, currSteps + 1)  )
-            return -1 
+        def bfs(start, target):
+            q = [start]
+            dist = [[sys.maxsize] * n for _ in range(m)]
+            dist[start[0]][start[1]] = 0
+            for i,j in q:
+                if forest[i][j] == target:
+                    return dist[i][j]
+                for x,y in [[i,j-1],[i,j+1],[i-1,j],[i+1,j]]:
+                    if 0 <= x < len(forest) and 0 <= y < len(forest[0]) and dist[x][y] == sys.maxsize and forest[x][y] != 0:
+                        q.append([x,y])
+                        dist[x][y] = dist[i][j] + 1
+            return -1
+        ans = 0
         
-        x = 0
-        y = 0 
-        totalSteps = 0 
-		
-		#step 2 
-		
-        for tree in trees :
-            steps = bfs(x,y,tree[1],tree[2]) #step 3 
-            if steps < 0 :
-                return -1 
-            totalSteps += steps 
-            x = tree[1]
-            y = tree[2]
+        n = len(forest[0])
+        m = len(forest)
+        tree = sorted((val,i,j) for i,row in enumerate(forest) for j, val in enumerate(row) if val > 1)[::-1]
+        ans = 0
+        start = [0,0]
+        
+        while tree:
+            target , i , j = tree.pop()
+            dist = bfs(start,target)
+            if dist == -1:
+                return -1
+            start = [i,j]
+            ans += dist
             
-        return totalSteps 
+        return ans
+            
