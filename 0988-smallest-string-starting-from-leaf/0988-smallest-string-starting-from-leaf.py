@@ -11,15 +11,12 @@ class Solution:
             nonlocal ans
             if not node:
                 return
-            if not node.left and  not node.right:
-                curr = chr(node.val + ord('a'))
+            curr = chr(node.val + ord('a'))
 
-                if ans == None:
-                    ans = curr + p 
-                elif ans > curr + p:
+            if not node.left and  not node.right:
+                if not ans or ans > curr + p:
                     ans = curr + p
             else :
-                curr = chr(node.val + ord('a'))
                 dfs(node.left  , curr + p)
                 dfs(node.right , curr + p)
         dfs(root , "")
