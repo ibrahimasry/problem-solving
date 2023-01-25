@@ -1,10 +1,11 @@
 class Solution:
     def cutOffTree(self, forest: List[List[int]]) -> int:
         def bfs(start, target):
-            q = [start]
+            q = deque([start])
             dist = [[sys.maxsize] * n for _ in range(m)]
             dist[start[0]][start[1]] = 0
-            for i,j in q:
+            while q:
+                i,j = q.popleft()
                 if forest[i][j] == target:
                     return dist[i][j]
                 for x,y in [[i,j-1],[i,j+1],[i-1,j],[i+1,j]]:
