@@ -1,15 +1,20 @@
 class Solution:
     def findCheapestPrice(self, n: int, flights: List[List[int]], src: int, dst: int, k: int) -> int:
-        
+        graph = defaultdict(list)
+        for u,v, cost in flights:
+            graph[u].append((v,cost))
         dist = [inf] * n
-        prev = [inf] * n
-        prev[src] = 0
-        
-        for _ in range(k+1):
-            dist = [inf] * n
-            for u , v , cost in flights:
-                if prev[u] + cost < dist[v]:
-                    dist[v] = prev[u] + cost
-            prev = dist
-            prev[src] = 0
-        return -1 if prev[dst] == inf else prev[dst]
+        dist[src] = 0
+        pq = [(0,0,src)]
+        while pq:
+            d ,stops, node = heappop(pq)
+            if node == dst:
+                return d
+
+            if stops > dist[node] or stops == k+1:
+                continue
+            dist[node] = stops
+            for nei , cost in graph[node]:
+                heappush(pq,(cost + d, stops + 1 , nei))
+
+        return -1 
