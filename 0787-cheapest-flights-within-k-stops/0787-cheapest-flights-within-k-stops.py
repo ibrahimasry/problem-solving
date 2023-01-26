@@ -6,10 +6,10 @@ class Solution:
         prev[src] = 0
         
         for _ in range(k+1):
+            dist = [inf] * n
             for u , v , cost in flights:
                 if prev[u] + cost < dist[v]:
                     dist[v] = prev[u] + cost
             prev = dist
             prev[src] = 0
-            dist = [inf] * n
         return -1 if prev[dst] == inf else prev[dst]
