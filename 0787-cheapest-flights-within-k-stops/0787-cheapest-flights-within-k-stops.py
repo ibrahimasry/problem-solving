@@ -7,8 +7,6 @@ class Solution:
         
         for _ in range(k+1):
             for u , v , cost in flights:
-                if prev[u] == inf:
-                    continue
                 if prev[u] + cost < dist[v]:
                     dist[v] = prev[u] + cost
             prev = dist
