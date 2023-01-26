@@ -19,23 +19,19 @@ class Solution:
         heappush(pq,(0, person[0],person[1] , box[0],box[1]))
         dist = defaultdict(lambda: inf)
         while pq:
-            moves , i,j,x,y = heappop(pq)
-            if (x,y) == target:
+            moves , personX ,personY, boxX,boxY = heappop(pq)
+            if (boxX,boxY) == target:
                 return moves
-            if dist[(i,j,x,y)] < moves :
+            if dist[(personX , personY, boxX, boxY)] < moves :
                 continue
             for (dirx , diry) in [[-1,0],[1,0],[0,-1],[0,1]]:
-                r, c = i+dirx , j+diry
-                if inside(r,c) :
-                    nx , ny = x,y
-                    if (r,c) == (x,y):
-                        nx,ny = x + dirx  , y + diry
-                        if inside(nx,ny) and dist[(r,c,nx,ny)] > moves + 1:
-                            dist[(r,c,nx,ny)] = moves + 1
-                            heappush(pq,(moves+1,r,c,nx,ny))
-                    else:
-                        if dist[(r,c,nx,ny)] > moves :
-                            dist[(r,c,nx,ny)] = moves 
-                            heappush(pq,(moves,r,c,nx,ny))
+                nextPersonX, nextPersonY = personX + dirx , personY + diry
+                if inside(nextPersonX,nextPersonY) :
+                    cost = (nextPersonX, nextPersonY) == (boxX,boxY)
+                    nextBoxX , nextBoxY = boxX + dirx * cost  , boxY + diry * cost
+                    key = (nextPersonX,nextPersonY, nextBoxX, nextBoxY)
+                    if inside(nextBoxX , nextBoxY) and dist[key] > moves + 1:
+                        dist[key] = moves + cost
+                        heappush(pq,(moves+cost,*key))
                     
         return -1
