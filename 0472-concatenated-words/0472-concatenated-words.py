@@ -1,18 +1,15 @@
 class Solution:
     def findAllConcatenatedWordsInADict(self, words: List[str]) -> List[str]:
         def dp(word):
-            if len(word) == 0:
-                return True
-            
-            for i in range(len(word)+1):
-                if word[:i] in seen and dp(word[i:]):
+            for i in range(len(word)):
+                if word[:i+1] in seen and dp(word[i+1:]):
                     return True
-            return False
+            return not word
         ans = []
         seen = set(words)
         for word in words:
             seen.remove(word)
-            if(dp(word)):
+            if dp(word):
                 ans.append(word)
             seen.add(word)
         return ans
