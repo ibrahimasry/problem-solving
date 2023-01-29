@@ -5,12 +5,12 @@ class Solution:
         right = [[0 for i in range(n+1)] for j in range(n)]
         for i in range(1, n):
             # new array will based on the old array
-            left[i] = left[i-1].copy()
+            left[i] = left[i-1][:]
             # update all the elements greater than a[i-1]
             for j in range(a[i-1] + 1, n + 1):
                 left[i][j] += 1
         for i in range(n-2, -1, -1):
-            right[i] = right[i+1].copy()
+            right[i] = right[i+1][:]
             for j in range(a[i+1]):
                 right[i][j] += 1
         for j in range(n):
