@@ -5,5 +5,6 @@ class Solution:
         for i in range(len(nums)-1,0,-1):
             while stack and stack[-1] <= minn[i]: stack.pop()
             if stack and nums[i] > stack[-1]: return True
-            stack.append(nums[i])
+            if nums[i] > minn[i]:
+                stack.append(nums[i])
         return False
