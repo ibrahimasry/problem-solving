@@ -11,7 +11,5 @@ class Solution:
                 stack.pop()
             if stack and nums[i] > stack[-1]:
                 return True
-            while stack and stack[-1] <= nums[i]:
-                stack.pop()
             stack.append(nums[i])
         return False
