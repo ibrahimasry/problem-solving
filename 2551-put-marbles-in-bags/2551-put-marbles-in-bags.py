@@ -1,7 +1,7 @@
 class Solution:
     def putMarbles(self, weights: List[int], k: int) -> int:
         boundries = []
-        for a,b in zip(weights,weights[1:]):
+        for a,b in pairwise(weights):
             boundries.append(a+b)
         boundries.sort()
         
