@@ -1,39 +1,37 @@
 class Solution:
     def reversePairs(self, nums: List[int]) -> int:
-        count = 0
-        
-        def dfs(arr):
-            nonlocal count
-            if not arr or len(arr) == 1 :
-                return arr
-            m = len(arr)//2
-            left = dfs(arr[:m])
-            right = dfs(arr[m:])
+        total = 0
+        def dfs(nums):
+            nonlocal total
+            if len(nums) < 2:
+                return nums
+            left = dfs(nums[:len(nums)//2])
+            right = dfs(nums[len(nums)//2:])
             
-            l = 0
-            r = 0
-            arr = []
-            curr = 0
-            last = right[r]
-            p = 0
-            k = r
-            m = l
+            res = []
+            t = 0
+            i = 0
+            while i < len(left):
+                t += bisect.bisect(right,(left[i]-1)//2)
+                i+=1
+            i = 0
+            j = 0
 
-            while m < len(left) and k < len(right):
-                if  left[m] > 2*right[k]:
-                    count += (len(left) - m)
-                    k += 1
+            while i < len(left) and j < len(right):
+                if left[i] < right[j]:
+                    res.append(left[i])
+                    i += 1
                 else :
-                    m += 1
-            while r < len(right) and l < len(left):
-                if left[l] < right[r]:
-                    arr.append(left[l])
-                    l += 1
-                else :
-                    arr.append(right[r])
-                    r += 1
-            arr += left[l:] + right[r:]
-            return arr
+                    res.append(right[j])
+                    j+=1
+            while i < len(left):
+                res.append(left[i])
+                i+=1
+            while j < len(right):
+                res.append(right[j])
+                j += 1
+            total += t
+            return res
         dfs(nums)
-        return count
-                    
+        return total
+                
