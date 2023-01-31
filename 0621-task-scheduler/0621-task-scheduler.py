@@ -2,15 +2,22 @@ class Solution:
     def leastInterval(self, tasks: List[str], n: int) -> int:
         if n == 0:
             return len(tasks)
-        freq = Counter(tasks)
-        
-        maxKey,maxKeyValue = max(freq.items(),key=lambda x:x[1])
-        maxKeyCount = sum([1 for k, v in freq.items() if v == maxKeyValue])
+        count=Counter(tasks)
+        res = 0
+        q = deque()
+        pq = [(-v,c) for c,v in count.items()]
+        heapify(pq)
+        while pq:
+            while pq and ( len(q) <= n ):
+                v,c = heappop(pq)
+                v = -v
+                q.append((v-1,c))
+            curr = len(q)
+            while len(q):
+                v,c = q.popleft()
+                if v > 0:
+                    heappush(pq,(-v,c))
+            if pq:
+                res += ((n - curr) + 1 if curr <= n else 0 )
 
-        total = len(tasks)
-        
-        gap = (n - (maxKeyCount-1)) * (maxKeyValue -1)
-        gap -= (total- maxKeyCount * maxKeyValue)
-        gap = 0 if gap < 0 else gap
-        return total + gap
-        
+        return res + len(tasks)
