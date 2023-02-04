@@ -9,8 +9,6 @@ class Solution:
                 return True
             if i >= len(s1) - 1:
                 count[s2[l]] -= 1
-                if count[s2[l]] == 0:
-                    del count[s2[l]]
                 l += 1
                 
         return False
