@@ -9,7 +9,7 @@ class Solution:
                
                 el, prev =  s.pop()
                 curr = max(prev, curr+1)
-                res = max(res, curr)
+            res = max(res, curr)
 
             s.append((i, curr ))
         return res
