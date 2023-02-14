@@ -13,6 +13,8 @@ class Solution:
                 return 0
             left = dfs(node.left)
             right = dfs(node.right)
+            curr = 1 if node.val == destValue else 0
+            curr = 2 if node.val == startValue else curr
             #found the dist so we get down to it by left and right
             if left == 1 or right == 1:
                 path2.append('L' if left == 1 else "R")
@@ -21,16 +23,8 @@ class Solution:
             if left == 2 or right == 2:
                 path1.append('U')
             #we find the lca then reset and dont add any dirs
-            if left + right == 3:
+            if left + right + curr == 3:
                 return 0
-            #we find the start add 2 as a sign we found the start
-            if node.val == startValue:
-                return 2 + left + right
-            #we find the dist add 1 as a sign we found the start
-            if node.val == destValue:
-                return 1 + left + right
-
-
-            return left + right
+            return left + right + curr
         dfs(root)
         return "".join(path1 + path2[::-1])
