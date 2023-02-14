@@ -10,8 +10,6 @@ class Solution:
         path2 = []
         
         def dfs(node):
-            nonlocal path1
-            nonlocal path2
             if not node:
                 return 0
             left = dfs(node.left)
