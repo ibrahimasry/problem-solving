@@ -14,17 +14,26 @@ class Solution:
             return max(full*n, full * (n-1) + partial * (target - 1) )
 
         j = bisect.bisect_left(flowers,target) - 1
-        cnt = n - j - 1
-        res = 0
-        while newFlowers >= 0:
-            left = bisect.bisect(pre, newFlowers, hi=j+1)
-            base = flowers[left-1]
-            sur = (newFlowers - pre[left-1]) // (left)
-            mn = base + sur
-            res = max(cnt * full + mn*partial,res)
-            newFlowers -= (target - flowers[j])
+        
+        while newFlowers >= target - flowers[j]:
+            newFlowers -= target - flowers[j]
             j -= 1
-            cnt += 1
+        cnt = n - j - 1
+
+        res = 0
+        while True:
+            left = bisect.bisect(pre, newFlowers, hi=j+1)
+            mn = 0
+            if left > 0:
+                base = flowers[left-1]
+                sur = (newFlowers - pre[left-1]) // (left)
+                mn = base + sur
+            res = max(cnt * full + mn*partial,res)
+            if not cnt:
+                break
+            j += 1
+            newFlowers += (target - flowers[j])
+            cnt -= 1
 
         return res
             
