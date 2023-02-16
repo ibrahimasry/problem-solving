@@ -13,19 +13,18 @@ class Solution:
         if newFlowers >= target * n - sum(flowers):
             return max(full*n, full * (n-1) + partial * (target - 1) )
 
-        j = n - 1
-        while  flowers[j] == target:
-            j -= 1
-        
+        j = bisect.bisect_left(flowers,target) - 1
+        cnt = n - j - 1
         res = 0
         while newFlowers >= 0:
-            left = bisect.bisect(pre, newFlowers,hi=j+1)
+            left = bisect.bisect(pre, newFlowers, hi=j+1)
             base = flowers[left-1]
             sur = (newFlowers - pre[left-1]) // (left)
             mn = base + sur
-            res = max((n-j-1) * full + mn*partial,res)
+            res = max(cnt * full + mn*partial,res)
             newFlowers -= (target - flowers[j])
             j -= 1
+            cnt += 1
 
         return res
             
