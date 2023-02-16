@@ -11,15 +11,9 @@ class Solution:
             right = sorted([sum(com) for com in combinations(nums[n:], n - i)])
             for a in left:
                 b = half - a
-                curr = bisect.bisect_left(right,b)
+                curr = bisect.bisect(right,b)
                 if curr > 0:
                     cand2 = right[curr-1]
-                    l = cand2 + a
-                    r = s - l
-                    if abs(l-r) < res:
-                        res = abs(l-r)
-                if curr < len(right):
-                    cand2 = right[curr]
                     l = cand2 + a
                     r = s - l
                     if abs(l-r) < res:
