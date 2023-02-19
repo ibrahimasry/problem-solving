@@ -1,11 +1,9 @@
 class Solution:
     def squareFreeSubsets(self, nums: List[int]) -> int:
         freq = Counter(nums)
-
         ones = freq[1]
         del freq[1]
         nums = list(freq.keys())
-
         count = defaultdict(Counter)
         res = -1
         mod = 10 ** 9 + 7
@@ -35,11 +33,10 @@ class Solution:
             found = False
             total = 1
             for i in range(len(nums)):
-                if m >> i & 1 == 0:
-                    continue
+                if m >> i & 1 == 0: continue
                 countn = count[nums[i]]
                 total *= freq[nums[i]]
-                for j , c in (countn.items()):
+                for j , c in countn.items():
                     curr[j] += c
                     if curr[j] >= 2:
                         found = True
@@ -48,5 +45,6 @@ class Solution:
                     break
             if not found:
                 res += total
+                res %= mod
         t = pow(2,ones,mod) 
-        return (( res * t % mod ) + t-1) % mod
+        return (( (res * t) % mod ) + t-1) % mod
