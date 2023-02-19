@@ -33,6 +33,7 @@ class Solution:
                 mapped[mask] = n
                 
         nums = temp
+        nums.sort()
         for m in range(1, 1 << len(nums)):
             curr = 0
             found = False
