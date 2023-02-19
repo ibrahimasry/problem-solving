@@ -5,7 +5,7 @@ class Solution:
         del freq[1]
         nums = list(freq.keys())
         count = defaultdict(Counter)
-        res = -1
+        res = 0
         mod = 10 ** 9 + 7
         for n in nums:
             n1 = n
@@ -19,30 +19,31 @@ class Solution:
                 if n > 1:
                     count[n1][n] += 1
         temp = []
+        mapped = defaultdict(int)
         for n in nums:
             found = False
-            for c in count[n].values():
+            mask = 0
+            for f, c in count[n].items():
+                mask |= 1 << f
                 if c > 1:
                     found = True
                     break
             if not found:
-                temp.append(n)
+                temp.append(mask)
+                mapped[mask] = n
+                
         nums = temp
-        nums.sort()
-        for m in range(1 << len(nums)):
-            curr = [0] * 32
+        for m in range(1, 1 << len(nums)):
+            curr = 0
             found = False
             total = 1
             for i in range(len(nums)):
                 if m >> i & 1 == 0: continue
-                countn = count[nums[i]]
-                total *= freq[nums[i]]
-                for j , c in countn.items():
-                    curr[j] += c
-                    if curr[j] >= 2:
-                        found = True
-                        break
-                if found:
+                total *= freq[mapped[nums[i]]]
+                if nums[i] & curr == 0:
+                    curr |= nums[i]
+                else:
+                    found = True
                     break
             if not found:
                 res += total
