@@ -28,6 +28,7 @@ class Solution:
             if not found:
                 temp.append(n)
         nums = temp
+        nums.sort()
         for m in range(1 << len(nums)):
             curr = [0] * 32
             found = False
