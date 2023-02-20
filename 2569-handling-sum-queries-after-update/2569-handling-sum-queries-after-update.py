@@ -51,7 +51,6 @@ class Solution:
             elif queries[i][0] == 2:
                 t,p,_ = queries[i]
                 val = query(1,0,len(nums1)-1,0,len(nums1) - 1)
-                print(val)
                 curr += val * p
             else :
                 ans.append(curr)
