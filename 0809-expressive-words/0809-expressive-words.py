@@ -4,9 +4,7 @@ class Solution:
         for word in words:
             i = 0
             j = 0
-            while i < len(word) and j < len(s):
-                if word[i] != s[j]:
-                    break
+            while i < len(word) and j < len(s) and word[i] == s[j]:
                 c = s[j]
                 cnt1 = 0
                 cnt2 = 0
