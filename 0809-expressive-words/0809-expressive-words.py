@@ -4,15 +4,12 @@ class Solution:
         for word in words:
             i = 0
             j = 0
-            if len(word) > len(s):
-                continue
             while i < len(word) and j < len(s):
                 if word[i] != s[j]:
                     break
                 c = s[j]
                 cnt1 = 0
                 cnt2 = 0
-
                 while i < len(word) and word[i] == c:
                     cnt1 += 1
                     i += 1
