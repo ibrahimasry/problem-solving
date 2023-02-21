@@ -24,7 +24,7 @@ class Solution:
                     elif i < j == k:
                         res += count[keys[j]] * (count[keys[j]] - 1) * count[keys[i]] // 2
                     elif i == j == k and count[keys[j]] >= 2:
-                        res += count[keys[j]] * (count[keys[j]] - 1)* (count[keys[j]] - 2)// 6
+                        res += comb(count[keys[j]],3)
 
                     k -= 1
                     j += 1
