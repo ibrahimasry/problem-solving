@@ -1,0 +1,25 @@
+class Solution:
+    def shipWithinDays(self, weights: List[int], days: int) -> int:
+        
+        def good(m):
+            curr = m
+            k = 0
+            for n in weights:
+                if n > m:
+                    return False
+                if curr < n:
+                    curr = m-n
+                    k += 1
+                else:
+                    curr -= n
+            return k + 1 <= days
+        l = 0
+        r = sum(weights)+1
+        
+        while l < r:
+            m = (l+r)>>1
+            if good(m):
+                r = m
+            else:
+                l = m + 1
+        return l
