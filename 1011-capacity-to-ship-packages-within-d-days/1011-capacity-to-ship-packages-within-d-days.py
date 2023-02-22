@@ -6,10 +6,9 @@ class Solution:
             k = 0
             for n in weights:
                 if curr < n:
-                    curr = m-n
+                    curr = m
                     k += 1
-                else:
-                    curr -= n
+                curr -= n
             return k + 1 <= days
         l = max(weights)
         r = sum(weights)+1
