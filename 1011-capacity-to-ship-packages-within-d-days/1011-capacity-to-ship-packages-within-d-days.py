@@ -5,15 +5,13 @@ class Solution:
             curr = m
             k = 0
             for n in weights:
-                if n > m:
-                    return False
                 if curr < n:
                     curr = m-n
                     k += 1
                 else:
                     curr -= n
             return k + 1 <= days
-        l = 0
+        l = max(weights)
         r = sum(weights)+1
         
         while l < r:
