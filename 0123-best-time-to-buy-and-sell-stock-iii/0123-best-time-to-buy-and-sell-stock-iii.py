@@ -1,9 +1,9 @@
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        prev = [-inf] * 4
+        buy1=buy2=sell1=sell2=-inf
         for p in prices:
-            prev[0] = max(-p,prev[0])
-            prev[1] = max(prev[1] , p + prev[0])
-            prev[2] = max(-p + prev[1], prev[2] )
-            prev[3] = max(prev[3] , p + prev[2])
-        return prev[-1]
+            buy1 = max(buy1,-p)
+            sell1 = max(buy1+p,sell1)
+            buy2 = max(sell1 - p, buy2)
+            sell2 = max(sell2, p +buy2)
+        return sell2
