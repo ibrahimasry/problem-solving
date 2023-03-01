@@ -8,7 +8,7 @@ class Solution:
             q.append((1<<i,i))
             
         res = 0
-        while deque:
+        while q:
             for _ in range(len(q)):
                 m, curr = q.popleft()
                 if m == (1 << n) - 1:
@@ -17,6 +17,6 @@ class Solution:
                     if (m | 1 << ne , ne) in seen:
                         continue
                     q.append((( m | 1 << ne , ne )))
-                    seen.add(( m | 1 << ne , ne ))
+                    seen.add(q[-1])
             res += 1
         return -1
