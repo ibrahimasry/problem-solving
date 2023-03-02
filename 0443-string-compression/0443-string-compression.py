@@ -11,5 +11,5 @@ class Solution:
                     chars[left:left+l] = list(str(i - r + 1))
                     left += l
                 r = i + 1
-        del chars[left:]
+        return left
         
