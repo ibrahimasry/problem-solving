@@ -4,8 +4,7 @@ class Solution:
         for i in range(len(flowerbed)):
             if flowerbed[i]:
                 prev = 1
-                continue
-            if (i == len(flowerbed)-1 or not flowerbed[i+1]) and not prev:
+            elif (i == len(flowerbed)-1 or not flowerbed[i+1]) and not prev:
                 prev = 1
                 n -= 1
 
