@@ -13,7 +13,6 @@ class Solution:
         for n in nums[::-1][1::]:
             if n >= arr[-1]:
                 index = bisect_left(primes,  (n-arr[-1])+1)
-                print(n - primes[index])
                 if  n - primes[index] >= arr[-1] or n <= primes[index]:
                     return False
                 arr.append(n - primes[index])
