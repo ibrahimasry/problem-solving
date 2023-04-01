@@ -18,10 +18,10 @@ class Solution:
                 curr = q.popleft()
                 for nei in graph[curr]:
                     if dist[nei]  == inf:
-                        
                         dist[nei] = dist[curr] + 1
                         q.append(nei)
                     elif dist[nei] >= dist[curr]:
                         res = min(res, dist[nei] + dist[curr] + 1 )
+                        break
                         
         return -1 if res == inf else res
